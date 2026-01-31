@@ -32,6 +32,30 @@ header {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
+/* 1. Base Link Style */
+li a {
+    text-decoration: none !important; /* Removes default underline */
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* 2. HOVER: White Glow (No underline) */
+li a:hover {
+    text-decoration: none; /* Double check to prevent hover underlines */
+    color: #ffffff;
+    /* Layered shadows create a neon 'glow' effect */
+    text-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff; 
+}
+
+/* 3. ACTIVE: Yellow State (No underline) */
+li a.active {
+    text-decoration: none;
+    color: #f9c802 !important; /* Your Enspire Yellow */
+    text-shadow: 0 0 12px rgba(249, 200, 2, 0.5);
+    font-weight: 700;
+}
 nav {
     width: 100%;
 }

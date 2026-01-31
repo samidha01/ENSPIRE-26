@@ -21,7 +21,12 @@ a {
 /* ==============================
     HEADER / NAVBAR STYLING (BOOTSTRAP OVERRIDE VERSION)
    ============================== */
-
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
 /* 1. Header Container */
 .header-content {
   width: 100%;
@@ -34,11 +39,6 @@ a {
   height: 75px;
   position: sticky;
 
-  .header-content {
-    overflow: visible;
-    min-height: 80px;
-    height: auto;
-  }
 }
 
 /* 2. Logo Consistency */
@@ -91,7 +91,7 @@ nav.custom-nav a {
 }
 
 /* The Golden Line */
-/* nav.custom-nav a::after {
+nav.custom-nav a::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -104,7 +104,7 @@ nav.custom-nav a {
         0 0 8px rgba(249, 200, 2, 0.8), 
         0 0 16px rgba(249, 200, 2, 0.6);
     transition: width 0.4s ease-in-out; 
-} */
+}
 
 /* Hover & Active State */
 nav.custom-nav a:hover,
@@ -241,50 +241,56 @@ nav.custom-nav a.active::after {
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  background: #000;
+/* FORCE THE PAGE TO STAY INSIDE THE PHONE */
+/* 1. Reset Global width to prevent horizontal overflow */
+html, body {
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important; /* Forces the black side-gap to disappear */
 }
-/* HERO SECTION */
+
 .hero {
-  height: 100vh;
   position: relative;
+  width: 100%;
+  min-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-}
-
-/* VIDEO BACKGROUND */
-.hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  z-index: 0;
-}
-
-
-
-/* HERO CONTENT */
-.hero .content {
-  position: relative;
-  z-index: 2;
   text-align: center;
 }
 
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
+.hero .content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px; /* important for small screens */
+}
+
+
+
+.hero .content img {
+    width: 85% !important; /* Forces the name to fit inside the phone screen */
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
 /* DARK OVERLAY */
-/* .overlay {
+.overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
-} */
+} 
 
 CONTENT .content {
   position: relative;
@@ -340,15 +346,16 @@ CONTENT .content {
 
 /* BUTTON */
 .btn {
-  padding: 14px 35px;
-  border-radius: 30px;
-  background: transparent;
-  border: 2px solid #b44cff;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  margin-top: 40rem;
+    padding: 14px 35px;
+    border-radius: 30px;
+    background: transparent;
+    border: 2px solid #b44cff;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 25rem; 
+    display: inline-block;
+    position: relative;
+    z-index: 5;
 }
 
 .btn:hover {
@@ -407,6 +414,9 @@ CONTENT .content {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
   .title {
     font-size: 3rem;
   }
@@ -453,6 +463,13 @@ CONTENT .content {
 /* ===========================
    EVENT CARD BASE
 =========================== */
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
 
 .event-card {
   position: relative;
