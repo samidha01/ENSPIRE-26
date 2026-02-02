@@ -467,44 +467,53 @@ body {
 }
 .button-group {
     position: absolute;
-    bottom: 25px; /* Distance from bottom of card */
+    bottom: 35px; /* Distance from bottom of card */
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     padding: 0 15px;
     z-index: 999; /* Forces buttons to the very front */
+   
 }
 
 .btn-flip {
-    display: flex !important; /* Ensures it's not hidden */
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    flex: 1;
-    max-width: 110px;
-    height: 40px; /* Fixed height helps visibility */
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 12px;
-    text-transform: uppercase;
+
+    min-width: 140px;   /* Bigger width */
+    height: 55px;       /* Taller button */
+
+    padding: 0 25px;
+
+    border-radius: 60px;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 1px;
+
     border: none;
     cursor: pointer;
-    
-    /* THE FIX: Use the variable we created above */
-    background-color: var(--event-color) !important; 
-    color: #000000 !important; 
-    
-    box-shadow: 0 0 15px var(--event-color);
-    visibility: visible !important;
-    opacity: 1 !important;
+
+    background-color: var(--event-color) !important;
+    color: #000000 !important;
+
+    box-shadow: 
+        0 0 15px var(--event-color),
+        0 0 30px rgba(255,255,255,0.1);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+
 .btn-flip:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 25px currentColor;
-    filter: brightness(1.2);
+    transform: scale(1.12);
+    box-shadow: 
+        0 0 25px var(--event-color),
+        0 0 50px var(--event-color);
 }
+
 /* Colors */
 .idea { --event-color: #ff9800; color: var(--event-color); }
 .speaker { --event-color: #00ff00; color: var(--event-color); }
@@ -747,7 +756,7 @@ nav#nav-menu.active ul {
         align-items: center;
         gap: 30px;
     }
-
+  }
     .pass-btn {
         margin-top: 20px; /* Gives it breathing room in the vertical list */
     }
@@ -778,75 +787,4 @@ nav#nav-menu.active ul {
 
 .gold-ticket:hover {
     transform: scale(1.1) rotate(-2deg);
-}
-
-    /* 1. Target the links specifically */
-    nav#nav-menu ul li a {
-        font-size: 16px !important;    /* Shrunk from 24px/18px */
-        font-weight: 600 !important;   /* Medium thickness for readability */
-        text-transform: uppercase;
-        letter-spacing: 1px;           /* Cleaner spacing */
-    }
-
-    /* 2. Adjust the gap between items */
-    nav#nav-menu ul {
-        gap: 15px !important;          /* Brings the items closer together */
-        padding: 0;
-    }
-
-    /* 3. Ensure the mobile pass button scales with the smaller text */
-    .mobile-pass-item img {
-        height: 40px !important;       /* Scaled down to match smaller font */
-        margin-top: 10px;
-    }
-}
-
-/* UNIVERSAL MOBILE & TABLET RESPONSIVENESS */
-@media (max-width: 1024px) {
-    
-    /* 1. Reset Title Size */
-    .title {
-        font-size: 32px !important;
-        margin-top: 100px;
-    }
-
-    /* 2. Timeline: Switch from Row to a Scrollable Row */
-    /* This prevents the "stones" from overlapping on small screens */
-    .timeline {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto !important; /* Allows side-swiping */
-        gap: 20px;
-        padding-bottom: 30px;
-        justify-content: flex-start !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .event {
-        min-width: 150px; /* Ensures stones stay a readable size */
-    }
-
-    .line {
-        display: none; /* Lines usually break in mobile view */
-    }
-
-    /* 3. Event Cards: Switch from 2-Columns to 1-Column */
-    .event-cards {
-        grid-template-columns: 1fr !important; /* Stack cards vertically */
-        gap: 30px;
-        width: 90%;
-        perspective: none; /* Disable 3D on mobile if it causes lag */
-    }
-
-    .card {
-        width: 100% !important;
-        max-width: 320px;
-        height: 350px;
-    }
-
-    /* 4. Navbar Fix */
-    header {
-        width: 90% !important;
-        padding: 0 15px !important;
-    }
 }
