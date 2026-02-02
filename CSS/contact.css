@@ -1,0 +1,196 @@
+/* =======================
+   RESET STYLES
+======================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* =======================
+   BODY & BACKGROUND
+======================= */
+body {
+    color: #fff;
+    background-image: url("../Images/Heads/galaxy-image.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* =======================
+   CONTACT SECTION
+======================= */
+.title {
+    color: red;
+    font-size: 4vw; /* responsive font size */
+    font-weight: 900;
+    text-align: center;
+
+    -webkit-text-stroke: 2px white;
+    text-shadow:
+        0 0 10px rgba(255, 0, 0, 0.8),
+        0 0 25px rgba(255, 0, 0, 0.6),
+        0 0 40px rgba(255, 0, 0, 0.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    padding: 10px;
+}
+
+/* =======================
+   CONTACT CONTAINER
+======================= */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Shift odd/even cards */
+.contact-card:nth-child(odd) {
+    transform: translateX(-50px);
+}
+
+.contact-card:nth-child(even) {
+    transform: translateX(50px);
+}
+
+/* =======================
+   CONTACT CARD
+======================= */
+.contact-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 20px;
+    border-radius: 22px;
+    border: 2px solid transparent;
+
+    background: var(--card-color, rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    transition: 0.3s ease;
+}
+
+.contact-card:hover,
+.contact-card:active {
+    box-shadow: 0 0 25px var(--glow),
+                0 0 50px var(--glow);
+    transform: scale(1.03);
+}
+
+.contact-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.info {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.info h3 {
+    color: cyan;
+    font-size: 2vw;
+    margin-bottom: 8px;
+}
+
+.info h2 {
+    font-size: 1.5vw;
+    margin-bottom: 6px;
+}
+
+.info p {
+    font-size: 1.2vw;
+    color: #ccc;
+}
+
+.icons {
+    margin-top: 12px;
+}
+
+.icons i {
+    font-size: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icons i:hover {
+    color: var(--glow);
+}
+
+/* =======================
+   COLOR VARIANTS
+======================= */
+.purple { --glow: #a855f7; }
+.orange { --glow: #f97316; }
+.blue { --glow: #3b82f6; }
+
+/* =======================
+   RESPONSIVE STYLES
+======================= */
+
+/* Tablets & small desktops */
+@media (max-width: 1024px) {
+    .contact-card:nth-child(odd),
+    .contact-card:nth-child(even) {
+        transform: translateX(0);
+    }
+
+    .info h3 { font-size: 3vw; }
+    .info h2 { font-size: 2.5vw; }
+    .info p { font-size: 2vw; }
+
+    .contact-card img { width: 100px; height: 100px; }
+}
+
+/* Mobile phones */
+@media (max-width: 768px) {
+    nav { display: none; }
+
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 16px 10px;
+    }
+
+    .contact-card img { width: 90px; height: 90px; }
+
+    .info h3 { font-size: 5vw; }
+    .info h2 { font-size: 4vw; }
+    .info p { font-size: 3.5vw; }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .title { font-size: 6vw; }
+
+    .contact-card {
+        padding: 12px 8px;
+        border-radius: 16px;
+    }
+
+    .contact-card img { width: 70px; height: 70px; }
+
+    .info h3 { font-size: 5.8vw; }
+    .info h2 { font-size: 5vw; }
+    .info p { font-size: 4vw; }
+
+    .icons i { font-size: 18px; margin-right: 8px; }
+}
