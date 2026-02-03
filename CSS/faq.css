@@ -3,6 +3,7 @@
             background: black;
             padding: 20px;
             margin: 0;
+            margin-top: 40px;
         }
         .faq-section {
             max-width: 900px;
@@ -1169,74 +1170,72 @@ row{
 
 /* 2. Mobile Media Query (Threshold 768px) */
 @media (max-width: 768px) {
-    .hamburger {
-        display: flex; /* Show icon */
-    }
-   
+    /* 1. Header: Keeps Logo and Hamburger visible and apart */
     header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row; /* Keeps them side-by-side */
-        height: auto; 
-        padding: 10px 20px;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 65px !important;
+        width: 95% !important;
+        padding: 0 20px !important;
+        overflow: visible !important;
     }
 
+    /* 2. Hamburger: Force visibility */
+    .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        z-index: 1100;
+    }
+
+    /* 3. The Dropdown Menu */
     #nav-menu {
-        display: none; /* Hide links by default */
+        display: none; /* Controlled by JS toggle */
         position: absolute;
-        top: 80px; /* Sits below the pill header */
+        top: 75px; 
         left: 0;
         width: 100%;
-        background: rgba(20, 20, 20, 0.95);
-        backdrop-filter: blur(15px);
+        background: rgba(15, 15, 15, 0.98);
+        backdrop-filter: blur(20px);
         border-radius: 20px;
         padding: 20px 0;
+        z-index: 1000;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    /* THIS CLASS IS TRIGGERED BY YOUR JS */
     #nav-menu.mobile-active {
         display: block !important;
     }
 
+    /* 4. Menu List: Stack items vertically */
     #nav-menu ul {
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        width: 100%;
+        padding: 0;
+        margin: 0;
     }
 
-    #nav-menu.mobile-active ul li.pass-btn {
-        display: block !important;
+    /* 5. PASS BUTTON: Final Fix for Mobile */
+    nav ul li.pass-btn {
+        display: flex !important; /* Force show */
+        width: 100% !important;
+        justify-content: center !important;
         margin-top: 10px;
     }
 
-    nav ul li.pass-btn {
-        display: flex !important;
-        justify-content: center;
-        width: 100%;
-        margin-top: 15px;
+    .pass-btn a {
+        display: block !important;
+        width: auto;
     }
 
-    /* Resize the image so it doesn't overflow the mobile menu */
     .pass-btn img {
-        height: 50px !important; /* Adjusted from 60px */
-        width: auto;
-        transform: translateY(0) !important; /* Removes the desktop offset */
-        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9));
+        height: 55px !important; /* Larger for mobile visibility */
+        width: auto !important;
         opacity: 1 !important;
         visibility: visible !important;
-    }
-
-    /* Hamburger to X Animation */
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(0) !important; /* Remove desktop offset */
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
     }
 }
