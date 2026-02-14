@@ -32,6 +32,30 @@ header {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
+/* 1. Base Link Style */
+li a {
+    text-decoration: none !important; /* Removes default underline */
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* 2. HOVER: White Glow (No underline) */
+li a:hover {
+    text-decoration: none; /* Double check to prevent hover underlines */
+    color: #ffffff;
+    /* Layered shadows create a neon 'glow' effect */
+    text-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff; 
+}
+
+/* 3. ACTIVE: Yellow State (No underline) */
+li a.active {
+    text-decoration: none;
+    color: #f9c802 !important; /* Your Enspire Yellow */
+    text-shadow: 0 0 12px rgba(249, 200, 2, 0.5);
+    font-weight: 700;
+}
 nav {
     width: 100%;
 }
@@ -115,17 +139,6 @@ nav ul li:hover {
 
 }
 
-/* --- Timeline Container --- */
-.timeline {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 95%;
-    margin: 80px auto 120px;
-    padding: 0 30px;
-    position: relative;
-}
-
 /* --- Individual Event Block --- */
 .event {
     text-align: center;
@@ -186,35 +199,35 @@ nav ul li:hover {
 }
 
 
+/* --- Universal Timeline Alignment Fix --- */
+
 .event h3 {
-    /* 1. Increase font size and weight */
-    font-size: 22px; /* Adjust this number to make it even bigger if needed */
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    
-    /* 2. Alignment Logic */
-    min-height: 90px; /* Increased slightly to accommodate larger text */
+    /* 1. Force all headings to occupy the exact same vertical space */
+    height: 80px; 
     display: flex;
-    align-items: center;
+    align-items: center;    /* Vertically centers the text within that 80px */
     justify-content: center;
-    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;    /* Constant gap between text and stone */
     
-    /* 3. Text Glow (Optional) */
-    color: #fff;
-    text-shadow: 0 0 10px var(--event-color);
-    
-    transition: transform 0.3s ease;
+    /* 2. Prevent long words from breaking the layout */
+    overflow: hidden;
+    font-size: clamp(14px, 2vw, 20px); /* Automatically shrinks text on smaller screens */
+    line-height: 1.2;
 }
-/* --- The Connecting Line --- */
+
+.timeline {
+    display: flex;
+    align-items: flex-start; /* Aligns the tops of the event blocks */
+    justify-content: space-between;
+    position: relative;
+    padding-top: 20px;
+}
+
+/* Ensure the connecting line stays vertically centered relative to the stones */
 .line {
     position: absolute;
-    /* Adjust this 'top' value until it hits the dead-center of your stones */
-    top: 195px; 
-    left: 5%;
-    right: 5%;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.4); 
+    top: 155px; /* Adjust this number to match the center of your stones */
     z-index: 1;
 }
 /* Much stronger glow on hover */
@@ -454,44 +467,53 @@ body {
 }
 .button-group {
     position: absolute;
-    bottom: 25px; /* Distance from bottom of card */
+    bottom: 35px; /* Distance from bottom of card */
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     padding: 0 15px;
     z-index: 999; /* Forces buttons to the very front */
+   
 }
 
 .btn-flip {
-    display: flex !important; /* Ensures it's not hidden */
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    flex: 1;
-    max-width: 110px;
-    height: 40px; /* Fixed height helps visibility */
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 12px;
-    text-transform: uppercase;
+
+    min-width: 140px;   /* Bigger width */
+    height: 55px;       /* Taller button */
+
+    padding: 0 25px;
+
+    border-radius: 60px;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 1px;
+
     border: none;
     cursor: pointer;
-    
-    /* THE FIX: Use the variable we created above */
-    background-color: var(--event-color) !important; 
-    color: #000000 !important; 
-    
-    box-shadow: 0 0 15px var(--event-color);
-    visibility: visible !important;
-    opacity: 1 !important;
+
+    background-color: var(--event-color) !important;
+    color: #000000 !important;
+
+    box-shadow: 
+        0 0 15px var(--event-color),
+        0 0 30px rgba(255,255,255,0.1);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+
 .btn-flip:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 25px currentColor;
-    filter: brightness(1.2);
+    transform: scale(1.12);
+    box-shadow: 
+        0 0 25px var(--event-color),
+        0 0 50px var(--event-color);
 }
+
 /* Colors */
 .idea { --event-color: #ff9800; color: var(--event-color); }
 .speaker { --event-color: #00ff00; color: var(--event-color); }
@@ -611,67 +633,101 @@ body {
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
 }
 
-@media (max-width: 768px) {
-    @media (max-width: 768px) {
-      .timeline {
-        flex-direction: row !important; /* Forces side-by-side row */
-        overflow-x: auto; /* Allows swiping if the screen is too narrow */
-        padding-bottom: 20px;
-    }
-    
-    .event {
-        min-width: 140px; /* Ensures stones don't squish too much */
-    }
-    
-    /* Hide the scrollbar for a clean look */
-    .timeline::-webkit-scrollbar {
-        display: none;
-    }
-    /* 1. Reset Desktop Styles */
+
+  @media (max-width: 768px) {
+    /* 1. Header adjustment */
     header {
         justify-content: space-between;
+        width: 90%;
+        padding: 0 15px;
     }
 
-    /* 2. Initial State of the Menu (Hidden) */
+    /* 2. Mobile Menu (The Slide-out) */
     nav#nav-menu {
         position: fixed;
         top: 0;
-        left: -100%; /* Move it completely off-screen to the left */
+        left: -100%; /* Hidden by default */
         width: 100%;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.95); /* Darker for visibility */
+        background: rgba(0, 0, 0, 0.98); 
         backdrop-filter: blur(20px);
-        display: flex !important; /* Ensure flex is active */
+        display: flex !important;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: 0.5s ease-in-out; /* Smooth slide effect */
+        transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
         z-index: 1050;
     }
 
-    /* 3. ACTIVE STATE (This is what the JS triggers) */
     nav#nav-menu.active {
-        left: 0; /* Slide into view */
+        left: 0; /* Slide in */
     }
 
-    /* 4. Make the List Vertical */
+    /* 3. Smaller Font & Spacing */
     nav ul {
         flex-direction: column !important;
-        gap: 30px;
+        gap: 20px; /* Reduced gap to prevent overflow */
         text-align: center;
+        padding: 0;
     }
 
     nav ul li {
-        font-size: 24px !important;
-        color: white !important;
+        font-size: 18px !important; /* Made smaller as requested */
         list-style: none;
     }
-}
 
+    /* 4. The Hamburger & Cross Animation */
     .hamburger {
-        display: flex !important; /* Forces it to show on mobile */
+        display: flex !important;
+        z-index: 1100; /* Must be higher than nav-menu */
+        display: none; /* Keep hidden on desktop */
+        flex-direction: column;
+        justify-content: space-between;
+        width: 22px;   /* Shrunk from 30px */
+        height: 16px;  /* Shrunk from 30px/20px */
+        cursor: pointer;
+        z-index: 1101;
     }
 
+.bar {
+    width: 100%;
+    height: 2px;   /* Thinner lines for a sleek look */
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+/* Update the Cross Animation for the new smaller size */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg); /* Adjusted from 8px */
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg); /* Adjusted from -8px */
+}
+    /* 5. Timeline Row Fix */
+    .timeline {
+        flex-direction: row !important;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        justify-content: flex-start;
+    }
+    
+    .event {
+        min-width: 140px;
+    }
+
+    /* Hide redundant elements in header to save space */
+    header > .pass-btn-container {
+        display: none; /* Hide the floating pass button in mobile header */
+    }
+     .mobile-pass-item img {
+        height: 55px !important;
+        margin-top: 15px;
+        display: block;
+        filter: drop-shadow(0 0 10px gold);
+        margin-left: auto;
+        margin-right: auto; /* Centers it in the menu */
+    }
     /* Center the gold ticket in the mobile list */
     .pass-btn {
         margin-top: 20px;
@@ -700,7 +756,7 @@ nav#nav-menu.active ul {
         align-items: center;
         gap: 30px;
     }
-
+  }
     .pass-btn {
         margin-top: 20px; /* Gives it breathing room in the vertical list */
     }
@@ -713,7 +769,7 @@ nav#nav-menu.active ul {
         opacity: 1 !important;
         margin: 20px auto; /* Centers it in the mobile list */
     }
-  }
+  
 .gold-ticket {
     background: linear-gradient(45deg, #ffd700, #ffae00);
     color: #000 !important; /* Force black text */

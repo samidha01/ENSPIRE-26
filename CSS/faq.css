@@ -1,0 +1,509 @@
+/* --- Variables for Neon Colors --- */
+:root {
+    --bg-color: #050505;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-muted: #b3b3b3;
+    
+    /* Neon Palette */
+    --neon-red: #ff3b3b;
+    --neon-green: #00ff88;
+    --neon-orange: #ff9d00;
+    --neon-yellow: #fff200;
+    --neon-blue: #00ccff;
+    --neon-purple: #d400ff;
+}
+
+/* --- Global Reset & Font --- */
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif; /* Modern Font */
+    background-color: var(--bg-color);
+    /* Subtle mesh gradient background */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(108, 45, 189, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 204, 255, 0.1) 0%, transparent 20%);
+    margin: 0;
+    padding: 0;
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* ==============================
+    HEADER / NAVBAR STYLING (BOOTSTRAP OVERRIDE VERSION)
+   ============================== */
+
+/* 1. Header Container */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: fixed;
+    top: 15px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%; 
+    max-width: 1200px;
+    height: 70px; /* Slightly taller for the big buttons */
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 100px; /* Full Pill Shape */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* 1. Base Link Style */
+li a {
+    text-decoration: none !important; /* Removes default underline */
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* 2. HOVER: White Glow (No underline) */
+li a:hover {
+    text-decoration: none; /* Double check to prevent hover underlines */
+    color: #ffffff;
+    /* Layered shadows create a neon 'glow' effect */
+    text-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff; 
+}
+
+/* 3. ACTIVE: Yellow State (No underline) */
+li a.active {
+    text-decoration: none;
+    color: #f9c802 !important; /* Your Enspire Yellow */
+    text-shadow: 0 0 12px rgba(249, 200, 2, 0.5);
+    font-weight: 700;
+}
+nav {
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* Keeps large buttons equally spaced */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    /* 1. Increase text size and weight */
+    font-size: 18px; /* Standard links are usually 12-14px; 18px feels much bigger */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Spreads letters for a "wide" premium look */
+    
+    /* 2. Coloring and Transition */
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    white-space: nowrap; /* Keeps items on one line */
+    
+    /* 3. Padding for larger clickable area */
+    padding: 5px 10px;
+}
+
+/* 4. Hover effect to make them pop even more */
+nav ul li:hover {
+    color: #fff;
+    transform: scale(1.15); /* Makes the link grow 15% bigger on hover */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* Slim logo for the slim bar */
+.logo img {
+    height: 30px; 
+    width: auto;
+}
+
+/* Ensure the Pass icon is tiny and balanced */
+.pass-btn img {
+    height: 60px !important; 
+    width: auto;
+    cursor: pointer;
+    
+    /* THE FIX: Moves the icon down by 5 pixels */
+    transform: translateY(5px); 
+    
+    /* Keep your existing transition and filter */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+}
+
+/* Update hover to keep the downward position while scaling */
+.pass-btn img:hover {
+    transform: translateY(5px) scale(1.1); 
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
+}
+
+/* --- Hamburger Icon Appearance --- */
+.hamburger {
+    display: none; /* Hidden on desktop by default */
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    z-index: 1100;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff !important; /* Forces bars to be white */
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
+.pass-btn img {
+    height: 45px; /* Adjust to fit inside your 60px-70px header */
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+    display: block;
+}
+
+.pass-btn img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
+}
+
+/* ==============================
+    CLEANED RESPONSIVE HEADER (768px Fix)
+   ============================== */
+
+@media (max-width: 768px) {
+    /* 1. COMPLETELY HIDE the horizontal desktop menu */
+    /* Using 'header nav' makes this more specific than your global 'nav' */
+    header nav#nav-menu {
+        display: none !important; 
+        position: fixed;
+        top: 0;
+        left: -100%; 
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2000;
+    }
+
+    /* 2. When JS adds the 'active' class, show the full-screen menu */
+    header nav#nav-menu.active {
+        display: flex !important;
+        left: 0;
+    }
+
+    /* 3. FORCE the Hamburger to appear */
+    .hamburger {
+        display: flex !important; 
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 18px;
+        z-index: 2101;
+        margin-left: auto; /* Pushes it to the right side of the pill */
+    }
+
+    /* 4. Fix the vertical layout of links inside the mobile menu */
+    header nav#nav-menu ul {
+        flex-direction: column !important;
+        display: flex !important;
+        gap: 25px !important;
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+    }
+
+    header nav#nav-menu ul li {
+        font-size: 22px !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 5. Adjust the Header 'Pill' for Mobile */
+    header {
+        width: 92%;
+        height: 60px;
+        padding: 0 20px;
+        top: 10px;
+        border-radius: 50px;
+    }
+
+    .logo img {
+        height: 25px;
+    }
+
+    /* Hide the 'Passes' button on mobile if it's crowding the logo */
+    .pass-btn {
+        display: none; 
+    }
+}
+
+/* HAMBURGER 'X' ANIMATION */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- FAQ Section Layout --- */
+.faq-section {
+    max-width: 900px;
+    margin: 140px auto 60px; 
+    padding: 20px;
+}
+
+/* Title Styling */
+.title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #fff, #b3b3b3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(255,255,255,0.1);
+    letter-spacing: -1px;
+    margin-top: -20px;
+}
+
+/* Notice Box */
+.notice {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: #ffd700;
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(5px);
+}
+
+/* --- Category Buttons (Capsule Style) --- */
+.category-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 50px;
+}
+
+.cat-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-muted);
+    padding: 10px 24px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    border-radius: 30px; 
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover & Active Effects - Using Shadow for Glow */
+.cat-btn:hover { transform: translateY(-3px); color: #fff; border-color: #fff; }
+
+/* Individual Button Glows */
+.btn-general:hover, .btn-general.active-btn { 
+    border-color: var(--neon-red); box-shadow: 0 0 15px var(--neon-red), inset 0 0 10px rgba(255,59,59,0.2); text-shadow: 0 0 5px var(--neon-red); color: #fff;
+}
+.btn-registration:hover, .btn-registration.active-btn { 
+    border-color: var(--neon-green); box-shadow: 0 0 15px var(--neon-green), inset 0 0 10px rgba(0,255,136,0.2); text-shadow: 0 0 5px var(--neon-green); color: #fff;
+}
+.btn-payment:hover, .btn-payment.active-btn { 
+    border-color: var(--neon-orange); box-shadow: 0 0 15px var(--neon-orange), inset 0 0 10px rgba(255,157,0,0.2); text-shadow: 0 0 5px var(--neon-orange); color: #fff;
+}
+.btn-passes:hover, .btn-passes.active-btn { 
+    border-color: var(--neon-yellow); box-shadow: 0 0 15px var(--neon-yellow), inset 0 0 10px rgba(255,242,0,0.2); text-shadow: 0 0 5px var(--neon-yellow); color: #fff;
+}
+.btn-tech:hover, .btn-tech.active-btn { 
+    border-color: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue), inset 0 0 10px rgba(0,204,255,0.2); text-shadow: 0 0 5px var(--neon-blue); color: #fff;
+}
+.btn-logistics:hover, .btn-logistics.active-btn { 
+    border-color: var(--neon-purple); box-shadow: 0 0 15px var(--neon-purple), inset 0 0 10px rgba(212,0,255,0.2); text-shadow: 0 0 5px var(--neon-purple); color: #fff;
+}
+
+
+/* --- FAQ Items (Aesthetic Cards) --- */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px); /* The Glass Effect */
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    
+    /* The Glowy Line on the Left */
+    border-left: 4px solid transparent; 
+}
+
+/* Hover Effect on Cards */
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(5px); /* Slide slightly right */
+}
+
+/* Category Colors for Left Border & Glow */
+.faq-item[data-category="general"] { border-left-color: var(--neon-red); }
+.faq-item[data-category="general"]:hover { box-shadow: -5px 0 20px -10px var(--neon-red); }
+
+.faq-item[data-category="registration"] { border-left-color: var(--neon-green); }
+.faq-item[data-category="registration"]:hover { box-shadow: -5px 0 20px -10px var(--neon-green); }
+
+.faq-item[data-category="payment"] { border-left-color: var(--neon-orange); }
+.faq-item[data-category="payment"]:hover { box-shadow: -5px 0 20px -10px var(--neon-orange); }
+
+.faq-item[data-category="passes"] { border-left-color: var(--neon-yellow); }
+.faq-item[data-category="passes"]:hover { box-shadow: -5px 0 20px -10px var(--neon-yellow); }
+
+.faq-item[data-category="technical"] { border-left-color: var(--neon-blue); }
+.faq-item[data-category="technical"]:hover { box-shadow: -5px 0 20px -10px var(--neon-blue); }
+
+.faq-item[data-category="logistics"] { border-left-color: var(--neon-purple); }
+.faq-item[data-category="logistics"]:hover { box-shadow: -5px 0 20px -10px var(--neon-purple); }
+
+
+/* Question Area */
+.faq-question {
+    padding: 20px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #eee;
+    transition: color 0.3s;
+}
+
+/* Icon (Plus / Minus Animation) */
+.icon-container {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+.plus-icon {
+    width: 14px; height: 2px;
+    background: rgba(255,255,255,0.5);
+    transition: all 0.3s ease;
+    position: absolute;
+}
+.plus-icon::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 2px;
+    background: rgba(255,255,255,0.5);
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+}
+
+/* Active State Styles */
+.faq-item.active {
+    background: rgba(255, 255, 255, 0.08);
+}
+.faq-item.active .faq-question {
+    color: #fff;
+}
+/* Rotate Plus to Minus */
+.faq-item.active .plus-icon { transform: rotate(180deg); background: #fff; }
+.faq-item.active .plus-icon::after { transform: rotate(90deg); opacity: 0; } /* Hides vertical bar */
+
+
+/* Answer Area */
+.faq-answer {
+    display: none;
+    padding: 0 25px 25px 25px; /* Padding bottom only */
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    animation: slideDown 0.4s ease forwards;
+}
+
+.faq-item.active .faq-answer { display: block; }
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- Mobile Responsive --- */
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+.bar { width: 25px; height: 2px; background: #fff; transition: 0.3s; }
+
+@media (max-width: 768px) {
+    header { width: 95%; padding: 0 20px; border-radius: 15px; }
+    .hamburger { display: flex; }
+    
+    #nav-menu {
+        display: none; position: absolute; top: 80px; left: 0; width: 100%;
+        background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(15px);
+        border: 1px solid var(--card-border); border-radius: 20px; padding: 30px 0;
+        flex-direction: column; align-items: center; gap: 20px;
+    }
+    #nav-menu.mobile-active { display: flex !important; }
+    #nav-menu ul { flex-direction: column; width: 100%; gap: 25px; }
+    
+    .faq-section { margin-top: 120px; padding: 15px; }
+    .title { font-size: 2rem; }
+    .faq-question { font-size: 1rem; padding: 15px 20px; }
+}
+
+/* --- Footer (Clean & Minimal) --- */
+.footer-content {
+    background: #000;
+    border-top: 1px solid var(--card-border);
+    padding: 60px 20px;
+    margin-top: 80px;
+}
+.footer-grid {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;
+    max-width: 1100px; margin: 0 auto;
+}
+.footer-logo-section { flex: 1; min-width: 250px; }
+.footer-logo-section img { width: 140px; margin-bottom: 15px; opacity: 0.8; }
+.footer-logo-section p { color: #666; font-size: 13px; }
+
+.footer-links-section { flex: 2; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+.footer-column h3 { font-size: 16px; color: #fff; margin-bottom: 20px; font-weight: 600; letter-spacing: 0.5px; }
+.footer-column a { display: block; color: #888; text-decoration: none; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
+.footer-column a:hover { color: var(--neon-yellow); transform: translateX(3px); }
+
+.footer-divider { height: 1px; background: #222; margin: 40px auto; max-width: 1100px; }
+.copyright { text-align: center; color: #555; font-size: 12px; letter-spacing: 1px; }

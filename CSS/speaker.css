@@ -28,151 +28,115 @@ a {
 ================================ */
 
 /* Header Container */
-.header-content {
-    width: 100%;
+header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    background-color: #000;
-    padding: 15px 70px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    height: 75px;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+    padding: 0 30px;
+    position: fixed;
+    top: 15px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%; 
+    max-width: 1200px;
+    height: 70px; /* Slightly taller for the big buttons */
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 100px; /* Full Pill Shape */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Logo Consistency */
-.logo-section {
+/* 1. Base Link Style */
+li a {
+    text-decoration: none !important; /* Removes default underline */
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* 2. HOVER: White Glow (No underline) */
+li a:hover {
+    text-decoration: none; /* Double check to prevent hover underlines */
+    color: #ffffff;
+    /* Layered shadows create a neon 'glow' effect */
+    text-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff; 
+}
+
+/* 3. ACTIVE: Yellow State (No underline) */
+li a.active {
+    text-decoration: none;
+    color: #f9c802 !important; /* Your Enspire Yellow */
+    text-shadow: 0 0 12px rgba(249, 200, 2, 0.5);
+    font-weight: 700;
+}
+nav {
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-evenly; /* Keeps large buttons equally spaced */
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.logo-section img {
-    height: 38px;
-    width: auto;
-    transform: scale(1.3);
-    transform-origin: left center;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.logo-section img:hover {
-    transform: scale(1.4);
-}
-
-.logo-text {
-    font-size: 10px;
-    font-weight: 600;
-    color: #f9c802;
-}
-
-/* Navigation Links */
-nav.custom-nav {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-nav.custom-nav a {
-    text-decoration: none !important;
-    color: #fff !important;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 23px;
-    font-weight: 500;
-    position: relative;
-    padding-bottom: 6px;
-    transition: color 0.4s ease, text-shadow 0.4s ease;
-}
-
-/* Hover & Active State */
-nav.custom-nav a:hover,
-nav.custom-nav a.active {
-    color: #f9c802 !important;
-    text-shadow: 0 0 12px rgba(249, 200, 2, 0.6),
-                 0 0 24px rgba(249, 200, 2, 0.4);
-}
-
-/* PASSES NAV ITEM */
-.nav-passes {
-    background-image: url("images/Logo/passes-bg.png");
-    background-size: 120% 120%;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* HAMBURGER BUTTON (MOBILE) */
-.hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 30px;
+nav ul li {
+    /* 1. Increase text size and weight */
+    font-size: 18px; /* Standard links are usually 12-14px; 18px feels much bigger */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Spreads letters for a "wide" premium look */
+    
+    /* 2. Coloring and Transition */
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    white-space: nowrap; /* Keeps items on one line */
+    
+    /* 3. Padding for larger clickable area */
+    padding: 5px 10px;
 }
 
-/* MOBILE NAV MENU */
-.mobile-nav {
-    display: none;
-    flex-direction: column;
-    background-color: #000;
-    text-align: center;
-    padding: 20px;
-    gap: 15px;
+/* 4. Hover effect to make them pop even more */
+nav ul li:hover {
+    color: #fff;
+    transform: scale(1.15); /* Makes the link grow 15% bigger on hover */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
 
-.mobile-nav a {
-    text-decoration: none !important;
-    color: #fff !important;
-    font-size: 18px;
-    transition: color 0.25s ease;
-    font-family: 'Open Sans', sans-serif;
+/* Slim logo for the slim bar */
+.logo img {
+    height: 30px; 
+    width: auto;
 }
 
-.mobile-nav a:hover {
-    color: #f9c802 !important;
+/* Ensure the Pass icon is tiny and balanced */
+.pass-btn img {
+    height: 60px !important; 
+    width: auto;
+    cursor: pointer;
+    
+    /* THE FIX: Moves the icon down by 5 pixels */
+    transform: translateY(5px); 
+    
+    /* Keep your existing transition and filter */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
 }
 
-.mobile-nav.active {
-    display: flex;
+/* Update hover to keep the downward position while scaling */
+.pass-btn img:hover {
+    transform: translateY(5px) scale(1.1); 
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
 }
 
-/* RESPONSIVE HEADER */
-@media (max-width: 1024px) {
-    nav.custom-nav {
-        display: none;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .logo-section img {
-        height: 55px;
-        transform: scale(1.2);
-    }
-
-    .header-content {
-        padding: 10px 25px;
-        height: 70px;
-    }
-}
-
-@media (max-width: 600px) {
-    .logo-section img {
-        height: 50px;
-        transform: scale(1.1);
-    }
-
-    .header-content {
-        padding: 10px 20px;
-        height: 65px;
-    }
-}
 
 /* ===============================
    FOOTER SECTION
@@ -305,6 +269,25 @@ nav.custom-nav a.active {
     color: #bbb;
 }
 
+/* --- Paste this in your main CSS section --- */
+.hamburger {
+    display: none; /* Keep it hidden on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 1101; /* Higher than the nav-menu */
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
 /* FOOTER RESPONSIVE */
 @media (max-width: 1200px) {
     .footer-links-section {
@@ -334,18 +317,61 @@ nav.custom-nav a.active {
     }
 }
 
+/* 1. Hide the mobile-specific list item on Desktop */
+.mobile-nav-pass {
+    display: none;
+}
+
+/* 2. Mobile Logic */
 @media (max-width: 768px) {
-    .footer-content {
-        padding: 40px 20px;
+    /* Show the Hamburger */
+    .hamburger {
+        display: flex !important;
     }
 
-    .footer-links-section {
+    /* Hide the floating header pass button to clear space for the logo */
+    .pass-btn-container {
+        display: none !important;
+    }
+
+    /* Slide-out Menu Style */
+    nav#nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98); 
+        backdrop-filter: blur(20px);
+        display: flex !important;
         flex-direction: column;
-        gap: 30px;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s ease-in-out;
+        z-index: 1050;
     }
 
-    .footer-column a {
-        font-size: 15px;
+    nav#nav-menu.active {
+        left: 0;
+    }
+
+    nav ul {
+        flex-direction: column !important;
+        gap: 20px;
+    }
+
+    /* FORCE THE PASS BUTTON TO SHOW INSIDE THE MENU */
+    .mobile-nav-pass {
+        display: flex !important;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .mobile-nav-pass img {
+        height: 50px !important;
+        width: auto !important;
+        display: block !important;
+        filter: drop-shadow(0 0 10px gold);
     }
 }
 
@@ -384,7 +410,8 @@ nav.custom-nav a.active {
     letter-spacing: 1px;
     color: #fff;
     text-transform: uppercase;
-    margin-bottom: 60px;
+    margin-top: 60px;
+    margin-bottom: 50px;
     text-shadow: 0 0 16px #ff0033, 0 0 16px #ff0033;
 }
 

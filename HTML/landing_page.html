@@ -9,12 +9,12 @@
     <title>ECELL DMCE</title>
     <link rel="stylesheet" href="../CSS/landing.css">
     <link rel="stylesheet" href="../CSS/landing_carousel.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../Images/Logo/Enspire-logo.png" type="image/x-icon">
 </head>
 
 <body>
-
-    <!-- INTRO OVERLAY -->
+     <!-- INTRO OVERLAY -->
     <div id="intro-overlay">
         <video id="intro-video" playsinline>
             <source src="../Images/intro/thanos.mp4" type="video/mp4">
@@ -22,10 +22,11 @@
         </video>
         <div id="dust-particles"></div>
     </div>
+     <div id="main-content" style="opacity: 0; pointer-events: none; transition: opacity 1.5s ease;"></div>
 
-    <div id="main-content" style="opacity: 0; pointer-events: none; transition: opacity 1.5s ease;">
-        <!-- NAVBAR -->
-        <header>
+
+    <!-- NAVBAR -->
+    <header>
             <div class="header-content">
                 <div class="logo-section">
                     <a href=""><img src="../Images/Logo/Ecell-logo.png" alt="E-CELL DMCE Logo"></a>
@@ -55,9 +56,9 @@
                     <a href="../HTML/passes.html"> PASSES</a>
                 </div>
         </header>
-        <!-- HERO -->
+    <!-- HERO -->
 
-        <section class="hero">
+<section class="hero">
             <!-- Background Video -->
             <video class="hero-video desktop-video" autoplay muted loop playsinline>
                 <source src="../Images/Bg-img/Animating_Background_Stones_Only.mp4" type="video/mp4">
@@ -72,20 +73,18 @@
             <img src="../Images/Bg-img/Picsart_26-02-06_00-57-19-995.png" class="mobile-center-image"
                 alt="Mobile Hero Center Image">
 
+        <!-- Hero Content -->
+        <div class="content">
 
 
-            <!-- Hero Content -->
-            <div class="content">
+            <button class="btn">Download Brochure</button>
+        </div>
+    </section>
 
-
-                <button class="btn">Download Brochure</button>
-            </div>
-        </section>
-
-        <div class="unified-bg-wrapper space-bg">
-            <!-- ABOUT -->
-            <section class="about">
-                <h2 class="about-title">ABOUT ENSPIRE’26</h2>
+    <div class="unified-bg-wrapper space-bg">
+        <!-- ABOUT -->
+        <section class="about">
+            <h2 class="about-title">ABOUT ENSPIRE’26</h2>
 
                 <p class="about-text">
                     Enspire is the flagship entrepreneurship initiative of E-Cell DMCE, designed to ignite innovation,
@@ -111,85 +110,113 @@
 
                 <div class="events-grid">
 
-                    <div class="event-card ideathon">
-                        <div class="card-front">
-                            <img src="../images/events/ideathon.png">
+ <!-- IDEATHON -->
+        <div class="event-card ideathon">
+            <div class="card-front">
+                <img src="../images/events/ideathon.png" style="width: 255px;height: 340px;">
+            </div>
 
-                        </div>
-                        <div class="card-hover">
-                            <h2>IDEATHON</h2>
-                            <h4>Offline competition to understand the startup system</h4>
-                            <button>Register</button>
-                        </div>
-                    </div>
+            <div class="card-hover">
+                <h2>IDEATHON</h2>
+                <h4>Offline competition to understand the startup system</h4>
 
-                    <div class="event-card speaker">
-                        <div class="card-front">
-                            <img src="../images/events/tedx.png">
+                <a href="..\HTML\registration.html">
+                    <button>Register</button>
+                </a>
+            </div>
+        </div>
 
-                        </div>
-                        <div class="card-hover">
-                            <h2>SPEAKERS SESSIONS</h2>
-                            <h4>To have quality knoweledge to students and to spread entrepreneurial awareness</h4>
-                            <button>Passes</button>
-                        </div>
-                    </div>
+<!-- SPEAKER SESSION -->
+        <div class="event-card speaker">
+            <div class="card-front">
+                <img src="../images/events/tedx.png" style="width: 255px;height: 340px;">
+            </div>
 
-                    <div class="event-card startup">
-                        <div class="card-front">
-                            <img src="../images/events/startup.png">
+            <div class="card-hover">
+                <h2>SPEAKERS SESSIONS</h2>
+                <h4>To have quality knowledge to students and spread awareness</h4>
 
-                        </div>
-                        <div class="card-hover">
-                            <h2>STARTUP HUB</h2>
-                            <h4>New opportunities for students to excel in their career</h4>
-                            <button>Register</button>
-                        </div>
-                    </div>
+                <a href="../HTML/passes.html">
+                    <button>Passes</button>
+                </a>
+            </div>
+        </div>
 
-                    <div class="event-card auction">
-                        <div class="card-front">
-                            <img src="../images/events/auction.png">
+                 <!-- STARTUP HUB -->
+        <div class="event-card startup">
+            <div class="card-front">
+                <img src="../images/events/startup.png" style="width: 255px;height: 340px;">
+            </div>
 
-                        </div>
-                        <div class="card-hover">
-                            <h2>IPL AUCTION</h2>
-                            <h4>Activity where students will learn money management and risk taking abilities</h4>
+            <div class="card-hover">
+                <h2>STARTUP HUB</h2>
+                <h4>New opportunities for students to excel in career</h4>
 
-                            <button>Register</button>
-                            <button>Passes</button>
+                <a href="../HTML/registration.html">
+                    <button>Register</button>
+                </a>
+            </div>
+        </div>
 
-                        </div>
-                    </div>
+            <!-- IPL AUCTION -->
+        <div class="event-card auction">
+            <div class="card-front">
+                <img src="../images/events/auction.png" style="width: 280px;height: 340px; padding-left: 10px;">
+            </div>
 
-                    <div class="event-card tech">
-                        <div class="card-front">
-                            <img src="../images/events/techxpire.png">
+            <div class="card-hover">
+                <h2>IPL AUCTION</h2>
+                <h4>Learn money management and risk taking</h4>
 
-                        </div>
-                        <div class="card-hover">
-                            <h3>TECHXPIRE PROJECT COMPETITION</h3>
-                            <h4>An offline project exhibition for students to build a real-time project model</h4>
-                            <button>Register</button>
-                            <button>Passes</button>
-                        </div>
-                    </div>
+                <a href="../HTML/registration.html">
+                    <button>Register</button>
+                </a>
 
-                    <div class="event-card vr">
-                        <div class="card-front">
-                            <img src="../images/events/vrarena.png">
+                <a href="../HTML/passes.html">
+                    <button>Passes</button>
+                </a>
+            </div>
+        </div>
 
-                        </div>
-                        <div class="card-hover">
-                            <h2>VR ARENA</h2>
-                            <h4>To give new experience to students</h4>
-                            <button>Register</button>
-                        </div>
-                    </div>
+<!-- TECHXPIRE -->
+        <div class="event-card tech">
+            <div class="card-front">
+                <img src="../images/events/techxpire.png" style="width: 255px;height: 340px;">
+            </div>
 
-                </div>
-            </section>
-            <section class="current-speakers-section">
+            <div class="card-hover">
+                <h3>TECHXPIRE PROJECT COMPETITION</h3>
+                <h4>Offline project exhibition</h4>
+
+                <a href="../HTML/registration.html">
+                    <button>Register</button>
+                </a>
+
+                <a href="../HTML/passes.html">
+                    <button>Passes</button>
+                </a>
+            </div>
+        </div>
+
+<!-- VR ARENA -->
+        <div class="event-card vr">
+            <div class="card-front">
+                <img src="../images/events/vrarena.png" style="width: 255px;height: 340px;">
+            </div>
+
+            <div class="card-hover">
+                <h2>VR ARENA</h2>
+                <h4>New experience to students</h4>
+
+                <a href="../HTML/registration.html">
+                    <button>Register</button>
+                </a>
+            </div>
+        </div>
+
+            </div>
+        </section>
+        <section class="current-speakers-section">
 
                 <h1 class="title">CURRENT SPEAKERS</h1>
 
@@ -465,6 +492,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../JS/contact.js"></script>
+</body>
 </body>
 
 </html>
