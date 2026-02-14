@@ -1,156 +1,27 @@
-/* --- index.css --- */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background-color: #000;
-    color: white;
-    background-image: url(cosmics.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    /* background-position: center; */
-
-}
-
-/* =======================
-   HEADER / NAVBAR STYLING 
-   ======================= */
-
-/* 1. Header Container */
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    max-width: 1200px;
-    height: 70px;
-    /* Slightly taller for the big buttons */
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 100px;
-    /* Full Pill Shape */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-/* 1. Base Link Style */
-li a {
-    text-decoration: none !important;
-    /* Removes default underline */
-    color: white;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-/* 2. HOVER: White Glow (No underline) */
-li a:hover {
-    text-decoration: none;
-    /* Double check to prevent hover underlines */
-    color: #ffffff;
-    /* Layered shadows create a neon 'glow' effect */
-    text-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff;
-}
-
-/* 3. ACTIVE: Yellow State (No underline) */
-li a.active {
-    text-decoration: none;
-    color: #f9c802 !important;
-    /* Your Enspire Yellow */
-    text-shadow: 0 0 12px rgba(249, 200, 2, 0.5);
-    font-weight: 700;
-}
-
-nav {
-    width: 100%;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    /* Keeps large buttons equally spaced */
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    /* 1. Increase text size and weight */
-    font-size: 18px;
-    /* Standard links are usually 12-14px; 18px feels much bigger */
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    /* Spreads letters for a "wide" premium look */
-
-    /* 2. Coloring and Transition */
-    color: rgba(255, 255, 255, 0.85);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    white-space: nowrap;
-    /* Keeps items on one line */
-
-    /* 3. Padding for larger clickable area */
-    padding: 5px 10px;
-}
-
-/* 4. Hover effect to make them pop even more */
-nav ul li:hover {
-    color: #fff;
-    transform: scale(1.15);
-    /* Makes the link grow 15% bigger on hover */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-}
-
-/* Slim logo for the slim bar */
-.logo img {
-    height: 30px;
-    width: auto;
-}
-
-/* Ensure the Pass icon is tiny and balanced */
-.pass-btn img {
-    height: 60px !important;
-    width: auto;
-    cursor: pointer;
-
-    /* THE FIX: Moves the icon down by 5 pixels */
-    transform: translateY(5px);
-
-    /* Keep your existing transition and filter */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
-}
-
-/* Update hover to keep the downward position while scaling */
-.pass-btn img:hover {
-    transform: translateY(5px) scale(1.1);
-    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
-}
+/* Passes Specific Page Styling */
 
 /* Hero Section */
 .hero {
     height: auto !important;
     min-height: auto !important;
     padding: 120px 0 20px !important;
-    /* Top padding to account for fixed header */
+    /* Top padding for desktop */
     text-align: center;
     display: block !important;
-    /* Remove flex centering */
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 70px 0 10px !important;
+        /* Smaller padding for mobile screens */
+    }
+
+    .main-heading {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        font-size: 32px !important;
+        /* Adjust font size for better fit */
+    }
 }
 
 .main-heading {
