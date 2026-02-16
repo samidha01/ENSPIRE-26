@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- INTRO VIDEO LOGIC ---
     const introOverlay = document.getElementById('intro-overlay');
     const introVideo = document.getElementById('intro-video');
-    const snapAnimation = document.getElementById('snap-animation');
     const mainContent = document.getElementById('main-content');
     const body = document.body;
+    const particleContainer = document.getElementById('dust-particles');
 
+    // --- 1. INTRO VIDEO LOGIC ---
     if (introVideo && introOverlay) {
+        // Lock scrolling during intro
         body.classList.add('intro-active');
 
         // Attempt to play
@@ -15,76 +16,99 @@ document.addEventListener('DOMContentLoaded', () => {
             introVideo.play();
         });
 
-        introVideo.onended = () => {
+        // The master function to run when the video ends
+        const startGalaxyTransition = () => {
             introVideo.classList.add('dust-effect');
 
             // --- FALLING INTO GALAXY EFFECT ---
-            const particleContainer = document.getElementById('dust-particles');
+            if (particleContainer) {
+                const totalStars = 800;
+                for (let i = 0; i < totalStars; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'galaxy-star';
 
-            // Create dense starfield - you're falling INTO the galaxy
-            const totalStars = 800;
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 80 + Math.random() * 60; 
 
-            for (let i = 0; i < totalStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'galaxy-star';
+                    const startX = 50 + Math.cos(angle) * distance;
+                    const startY = 50 + Math.sin(angle) * distance;
 
-                // Calculate random angle for positioning
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 80 + Math.random() * 60; // Start far from center
+                    star.style.left = startX + 'vw';
+                    star.style.top = startY + 'vh';
+                    star.style.setProperty('--target-x', (50 - startX) + 'vw');
+                    star.style.setProperty('--target-y', (50 - startY) + 'vh');
 
-                // Start position (edge of screen)
-                const startX = 50 + Math.cos(angle) * distance;
-                const startY = 50 + Math.sin(angle) * distance;
+                    const size = 1 + Math.random() * 1.5;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
 
-                star.style.left = startX + 'vw';
-                star.style.top = startY + 'vh';
+                    const colors = ['#ffffff', '#f8f8ff', '#e6f2ff', '#dae8f5', '#c8d8e8'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    star.style.background = color;
+                    star.style.boxShadow = `0 0 ${size * 2}px ${color}`;
 
-                // Calculate path to center (falling inward)
-                star.style.setProperty('--target-x', (50 - startX) + 'vw');
-                star.style.setProperty('--target-y', (50 - startY) + 'vh');
+                    const speed = 2 + Math.random() * 2;
+                    star.style.animationDuration = speed + 's';
+                    star.style.animationDelay = (Math.random() * 1) + 's';
 
-                // Star size - visible but realistic
-                const size = 1 + Math.random() * 1.5;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-
-                // Color variation (realistic star colors)
-                const colors = ['#ffffff', '#f8f8ff', '#e6f2ff', '#dae8f5', '#c8d8e8'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                star.style.background = color;
-                star.style.boxShadow = `0 0 ${size * 2}px ${color}`;
-
-                // Speed variation (creates depth - closer stars move faster)
-                const speed = 2 + Math.random() * 2;
-                star.style.animationDuration = speed + 's';
-
-                // Stagger start times
-                star.style.animationDelay = (Math.random() * 1) + 's';
-
-                particleContainer.appendChild(star);
+                    particleContainer.appendChild(star);
+                }
             }
 
-            // Trigger website reveal as you "arrive" at galaxy center
+            // Trigger website reveal
             setTimeout(() => {
-                // Add gentle glow effect at arrival
                 introOverlay.classList.add('galaxy-arrival');
 
                 setTimeout(() => {
                     introOverlay.style.opacity = '0';
                     mainContent.classList.add('main-content-visible');
+                    mainContent.style.opacity = '1';
+                    mainContent.style.pointerEvents = 'all';
+                    
+                    // CRITICAL FIX: Unlock the scrolling!
                     body.classList.remove('intro-active');
+                    body.style.overflow = 'auto'; // Failsafe
 
                     setTimeout(() => {
                         introOverlay.style.display = 'none';
-                        particleContainer.innerHTML = '';
+                        if (particleContainer) particleContainer.innerHTML = '';
                     }, 1500);
                 }, 300);
-            }, 2200); // Arrival moment
+            }, 2200); 
         };
-    }
-    // --- END INTRO VIDEO LOGIC ---
 
-    // Existing sponsor card hover effect
+        // Trigger transition when video naturally ends
+        introVideo.onended = startGalaxyTransition;
+
+        // Safety timeout (in case the video gets stuck or blocked by browser policies)
+        setTimeout(() => {
+            if (body.classList.contains('intro-active')) {
+                startGalaxyTransition();
+            }
+        }, 8000); // Wait max 8 seconds
+
+    } else {
+        // Fallback if elements are missing: unlock immediately
+        body.classList.remove('intro-active');
+        body.style.overflow = 'auto';
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.pointerEvents = 'all';
+        }
+    }
+
+    // --- 2. MOBILE NAV TOGGLE ---
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // --- 3. SPONSOR CARDS HOVER EFFECT ---
     document.querySelectorAll('.sponsor-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
             card.style.boxShadow = '0 0 20px rgba(255,255,255,0.2)';
@@ -95,100 +119,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3D Carousel Logic
+    // --- 4. 3D CAROUSEL LOGIC ---
     const carouselContainer = document.querySelector('.carousel-container');
 
-    // Only proceed if carousel exists
     if (carouselContainer) {
         const cards = Array.from(carouselContainer.querySelectorAll('.speaker-card'));
         const totalCards = cards.length;
 
-        // We need at least 3 cards for this specific animation logic
         if (totalCards >= 3) {
-            let currentIndex = 1; // Start with the middle card (index 1 for 3 cards)
+            let currentIndex = 1;
 
             function updateCarousel() {
-                // Remove all special classes
                 cards.forEach(card => {
                     card.classList.remove('c-active', 'c-prev', 'c-next');
                 });
 
-                // Calculate indices
                 const prevIndex = (currentIndex - 1 + totalCards) % totalCards;
                 const nextIndex = (currentIndex + 1) % totalCards;
 
-                // Add classes
                 cards[currentIndex].classList.add('c-active');
                 cards[prevIndex].classList.add('c-prev');
                 cards[nextIndex].classList.add('c-next');
 
-                // Move to next card for next loop
                 currentIndex = (currentIndex + 1) % totalCards;
             }
 
-            // Initial call
             updateCarousel();
-
-            // Auto rotation every 3 seconds
             setInterval(updateCarousel, 3000);
         }
     }
 });
-// --- MOBILE NAV TOGGLE ---
-function toggleMenu() {
-    const mobileNav = document.getElementById('mobileNav');
-    if (mobileNav) {
-        mobileNav.classList.toggle('active');
-    }
-}
-// --- END MOBILE NAV TOGGLE ---
-
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    const video = document.getElementById('intro-video');
-    const mainContent = document.getElementById('main-content');
-    const introOverlay = document.getElementById('intro-overlay');
-
-    // 1. Navbar Toggle Logic
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
-
-    // 2. Intro Video Transition
-    function revealSite() {
-        if (introOverlay) {
-            introOverlay.style.opacity = '0';
-            setTimeout(() => {
-                introOverlay.style.display = 'none';
-                mainContent.style.opacity = '1';
-                mainContent.style.pointerEvents = 'all';
-            }, 1000);
-        }
-    }
-
-    if (video) {
-        video.onended = revealSite;
-        // Safety timeout if video fails
-        setTimeout(revealSite, 6000);
-    } else {
-        revealSite();
-    }
-});
-
-// Ensure this is in your landing_page.js
-const video = document.getElementById('intro-video');
-const mainContent = document.getElementById('main-content');
-
-video.onended = function() {
-    document.getElementById('intro-overlay').style.opacity = '0';
-    setTimeout(() => {
-        document.getElementById('intro-overlay').style.display = 'none';
-        mainContent.classList.add('main-content-visible');
-        mainContent.style.opacity = '1';
-        mainContent.style.pointerEvents = 'all';
-    }, 1000);
-};

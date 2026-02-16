@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <title>ECELL DMCE | Sponsors</title>
     <link rel="stylesheet" href="../CSS/landing.css">
     <link rel="stylesheet" href="../CSS/sponsors.css">
@@ -13,44 +14,36 @@
 
 <body>
 
-    <!-- NAVBAR -->
     <header>
-        <div class="header-content">
-            <div class="logo-section">
-                <a href="landing_page.html"><img src="../Images/Logo/Ecell-logo.png" alt="E-CELL DMCE Logo"></a>
-                <span class="logo-text"></span>
-            </div>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-            <nav class="custom-nav">
-                <a href="landing_page.html">Home</a>
-                <a href="events.html">Events</a>
-                <a href="speakers.html">Speakers</a>
-                <a href="sponsors.html" class="active">Sponsors</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="passes.html" class="nav-passes">
-                    <span class="passes-text">PASSES</span>
-                </a>
-            </nav>
-            <div class="mobile-nav" id="mobileNav">
-                <a href="landing_page.html">Home</a>
-                <a href="events.html">Events</a>
-                <a href="speakers.html">Speakers</a>
-                <a href="sponsors.html" class="active">Sponsors</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="passes.html"> PASSES</a>
-            </div>
+        <div class="logo">
+            <img src="../Images/Logo/Ecell-logo-removebg-preview.png" alt="E-CELL DMCE Logo">
         </div>
+
+        <div class="hamburger" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="landing_page.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="speakers.html">Speakers</a></li>
+                <li><a href="sponsors.html">Sponsors</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li class="pass-btn">
+                    <a href="passes.html"><img src="../Images/Event page/Passes.jpeg" alt="Passes"></a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- TITLE -->
-    <h1 class="title">CURRENT SPONSERS</h1>
+    <h1 class="title">CURRENT SPONSORS</h1>
 
-    <!-- SPONSORS GRID -->
     <section class="sponsor-grid">
 
-        <!-- Row 1 -->
         <div class="sponsor-card blue">
             <div class="logo"><img src="../Images/Sponsor/Paradise.png" alt="Paradise Group logo"></div>
             <p>Associate Partner</p>
@@ -66,7 +59,6 @@
             <p>Enterprise Partner</p>
         </div>
 
-        <!-- Row 2 -->
         <div class="sponsor-card green">
             <div class="logo"><img src="../Images/Sponsor/SI-UK.png" alt="SI-UK logo"></div>
             <p>Study Abroad Partner</p>
@@ -82,7 +74,6 @@
             <p>Digital Media Partner</p>
         </div>
 
-        <!-- Row 3 -->
         <div class="sponsor-card neon-blue">
             <div class="logo"><img src="../Images/Sponsor/rvr arena.png" alt="PVR World logo"></div>
             <p>Gaming Partner</p>
@@ -100,7 +91,6 @@
 
     </section>
 
-    <!-- LAST ROW -->
     <section class="bottom-grid">
         <div class="sponsor-card green">
             <div class="logo"><img src="../Images/Sponsor/Qspiders.jpg" alt="QSpiders logo"></div>
@@ -113,7 +103,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-grid">

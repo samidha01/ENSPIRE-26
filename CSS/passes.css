@@ -1,32 +1,138 @@
-/* Passes Specific Page Styling */
+/* =========================================
+   GLOBAL OVERFLOW FIX (Prevents horizontal scrolling)
+   ========================================= */
+html, body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important; 
+}
+
+/* =========================================
+   HEADER & NAVBAR (Desktop Glass Pill)
+   ========================================= */
+body > header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 30px !important;
+    position: fixed !important;
+    
+    top: 20px !important; 
+    left: 50% !important;
+    transform: translateX(-50%) !important; 
+    
+    width: 95% !important; 
+    max-width: 1200px !important; 
+    height: 75px !important;
+    z-index: 1000 !important;
+    
+    /* --- FIX: Changed background to highly translucent frosted glass --- */
+    background: rgba(255, 255, 255, 0.05) !important; 
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important; 
+    border-radius: 100px !important; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    box-sizing: border-box !important;
+}
+
+.logo img { height: 35px; width: auto; }
+
+nav { flex-grow: 1; display: flex; justify-content: flex-end; }
+nav ul { list-style: none; display: flex; align-items: center; justify-content: space-evenly; width: 90%; margin: 0; padding: 0; }
+nav ul li { font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255, 255, 255, 0.85); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; white-space: nowrap; padding: 5px 10px; }
+li a { text-decoration: none !important; color: inherit; display: inline-block; transition: all 0.3s ease; }
+nav ul li:hover { color: #ffffff; transform: scale(1.15); text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0 12px rgba(249, 200, 2, 0.5); }
+
+/* --- Passes Icon / Button --- */
+.pass-btn, .pass-btn a { display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; }
+.pass-btn img { height: 65px !important; width: auto; cursor: pointer; transform: translateY(4px) !important; transition: transform 0.3s ease, filter 0.3s ease; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7)); }
+.pass-btn img:hover { transform: translateY(4px) scale(1.1) !important; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1)); }
+
+/* Hamburger (Hidden on Desktop) */
+.hamburger { display: none; }
+.bar { width: 25px; height: 2px; background: #fff; transition: 0.3s; }
+
+/* =========================================
+   HEADER MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    header {
+        width: 92% !important; 
+        padding: 0 20px !important; 
+        height: 65px !important; 
+        top: 15px !important;
+        border-radius: 50px !important; 
+    }
+
+    .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 18px;
+        z-index: 2101;
+        cursor: pointer;
+    }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    header nav#nav-menu {
+        display: flex;
+        position: fixed;
+        top: 0 !important;
+        left: -100% !important; 
+        width: 100% !important; 
+        height: 100vh !important;
+        background: rgba(5, 5, 5, 0.98) !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        z-index: 2000 !important;
+        transform: none !important;
+    }
+    header nav#nav-menu.mobile-active { left: 0 !important; }
+    header nav#nav-menu ul { flex-direction: column; gap: 30px; width: 100%; text-align: center; }
+    header nav#nav-menu ul li { font-size: 22px; }
+    .pass-btn { display: none; }
+}
+
+
+/* =========================================
+   PAGE SPECIFIC CONTENT (Passes)
+   ========================================= */
 
 /* Hero Section */
 .hero {
     height: auto !important;
     min-height: auto !important;
-    padding: 120px 0 20px !important;
-    /* Top padding for desktop */
+    padding: 140px 0 20px !important;
     text-align: center;
     display: block !important;
+    position: relative;
+    z-index: 20;
 }
 
 @media (max-width: 768px) {
     .hero {
-        padding: 70px 0 10px !important;
-        /* Smaller padding for mobile screens */
+        padding: 110px 0 10px !important;
     }
 
     .main-heading {
         margin-top: 0 !important;
         padding-top: 0 !important;
         font-size: 32px !important;
-        /* Adjust font size for better fit */
     }
 }
 
 .main-heading {
     font-size: 42px;
     font-weight: 700;
+    color: #fff;
+    margin: 0;
 }
 
 .highlight {
@@ -39,11 +145,12 @@
     justify-content: center;
     align-items: center;
     gap: 40px;
-    padding: 40px 20px 100px;
+    /* --- FIX: Increased top padding from 40px to 120px to make room for stars --- */
+    padding: 120px 20px 100px;
     flex-wrap: wrap;
 }
 
-/* Pass Card Styling - Wide/Short proportions */
+/* Pass Card Styling */
 .pass-card {
     width: 340px;
     min-height: 560px;
@@ -69,18 +176,17 @@
 
 .gold {
     background: linear-gradient(to right, #7d6820, #d0a735, rgb(228, 207, 83));
+    border-color: gold;
 }
 
-/* --- UPDATED STAR CSS --- */
+/* Stars */
 .fashionable-stars {
     position: absolute;
-    /* MOVED UP MORE to account for bigger size */
     top: -90px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: flex-end;
-    /* Aligns side stars to bottom of center star */
     gap: 5px;
     justify-content: center;
     width: 100%;
@@ -88,27 +194,25 @@
 
 .center-star {
     height: 140px;
-    /* INCREASED SIZE */
     width: auto;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
-    /* Shadow for depth */
     z-index: 2;
 }
 
 .side-star {
     height: 90px;
-    /* INCREASED SIZE */
     width: auto;
     margin-bottom: 5px;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
-
 
 .pass-title {
     font-size: 33px;
     font-weight: 800;
     margin-bottom: 5px;
     text-transform: uppercase;
+    position: relative;
+    z-index: 10;
 }
 
 .pass-price {
@@ -121,10 +225,11 @@
     text-align: left;
     list-style: none;
     margin-bottom: auto;
+    padding-left: 0;
 }
 
 .pass-points li {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 8px;
     padding-left: 25px;
@@ -138,7 +243,7 @@
     left: 0;
 }
 
-/* REVERTED BUTTON: Golden Outline and rectangular shape */
+/* Button */
 .buy-now-trigger {
     background-color: #1a1a1a;
     color: white;
@@ -165,22 +270,21 @@
     .platinum {
         transform: scale(1);
     }
-
     .passes-container {
         gap: 60px;
-        padding-top: 150px;
+        padding-top: 150px; /* Make sure it's spacious on medium screens too */
     }
 }
 
-/* --- FOOTER STYLES --- */
+/* =========================================
+   FOOTER STYLES
+   ========================================= */
 .footer-content {
-    /* background-color: #000; */
     color: #fff;
     padding: 60px 50px;
     border-radius: 16px 16px 0 0;
     font-family: 'Open Sans', sans-serif;
     clear: both;
-    /* Ensure footer sits below everything */
 }
 
 .footer-grid {
@@ -235,7 +339,6 @@
     color: #ddd;
     font-size: 16px;
     transition: color 0.25s ease;
-    /* Reset from any global overrides */
     padding: 0;
     display: inline;
 }
@@ -278,16 +381,11 @@
 }
 
 .social-item img[alt="Twitter"] {
-    /* Remove the harsh filter that works poorly on non-SVG/non-monochromatic PNGs */
     filter: none;
-
-    /* Ensure the hover effect doesn't break it either */
     transition: transform 0.2s ease;
-    /* Keep the transform */
 }
 
 .social-item img[alt="Twitter"]:hover {
-    /* Set the filter back to 'none' on hover if you don't want the gold color */
     filter: none;
     transform: scale(1.1);
 }
@@ -311,43 +409,7 @@
     color: #bbb;
 }
 
-.gold {
-    border-color: gold
-}
-
-/* RESPONSIVE HEADER */
-@media (max-width: 1024px) {
-    nav {
-        display: none;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .logo-section img {
-        height: 55px;
-        transform: scale(1.2);
-    }
-
-    .header-content {
-        padding: 10px 25px;
-        height: 70px;
-    }
-}
-
-@media (max-width: 600px) {
-    .logo-section img {
-        height: 50px;
-        transform: scale(1.1);
-    }
-
-    .header-content {
-        padding: 10px 20px;
-        height: 65px;
-    }
-}
-
+/* Footer Media Queries */
 @media (max-width: 1200px) {
     .footer-links-section {
         gap: 30px;
@@ -373,36 +435,6 @@
 }
 
 @media (max-width: 768px) {
-    .gallery-wrapper {
-        max-width: 95%;
-    }
-
-    .thumbnail {
-        width: 60px;
-        height: 90px;
-    }
-
-    .nav-arrow {
-        font-size: 30px;
-    }
-
-    .prev-arrow {
-        left: -30px;
-    }
-
-    .next-arrow {
-        right: -30px;
-    }
-
-    .register-btn,
-    .upcoming-heading {
-        float: none;
-        display: block;
-        width: 80%;
-        margin: 20px auto;
-        text-align: center;
-    }
-
     .footer-content {
         padding: 40px 20px;
     }
@@ -415,27 +447,6 @@
 }
 
 @media (max-width: 550px) {
-    .gallery-wrapper {
-        max-width: 280px;
-    }
-
-    .prev-arrow {
-        left: -10px;
-    }
-
-    .next-arrow {
-        right: -10px;
-    }
-
-    .nav-arrow {
-        font-size: 24px;
-    }
-
-    .upcoming-heading {
-        text-align: center;
-        margin-left: 0;
-    }
-
     .footer-logo-section img {
         width: 100px;
     }
