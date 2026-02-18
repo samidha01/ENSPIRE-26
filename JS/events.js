@@ -3,27 +3,27 @@ showSlides(slideIndex);
 
 // Next/previous controls
 function changeSlide(n) {
-  showSlides(slideIndex += n);
+    showSlides(slideIndex += n);
 }
 
 // Main logic to show the correct image
 function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("carousel-slide");
-  
-  // If we go past the last slide, go back to the first
-  if (n > slides.length) {slideIndex = 1}
-  
-  // If we go before the first slide, go to the last
-  if (n < 1) {slideIndex = slides.length}
-  
-  // Hide all slides first
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  
-  // Show the current slide
-  slides[slideIndex-1].style.display = "block";
+    let i;
+    let slides = document.getElementsByClassName("carousel-slide");
+
+    // If we go past the last slide, go back to the first
+    if (n > slides.length) { slideIndex = 1 }
+
+    // If we go before the first slide, go to the last
+    if (n < 1) { slideIndex = slides.length }
+
+    // Hide all slides first
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // Show the current slide
+    slides[slideIndex - 1].style.display = "block";
 }
 // Ensure the script runs after the HTML is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            navMenu.classList.toggle('mobile-active');
             document.body.classList.toggle('menu-open');
         });
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                navMenu.classList.remove('mobile-active');
             });
         });
     } else {

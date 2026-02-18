@@ -104,9 +104,18 @@ header {
 
   /* 1. Header adjustment */
   header {
-    justify-content: space-between;
-    width: 90%;
-    padding: 0 15px;
+    width: 92% !important;
+    padding: 0 20px !important;
+    height: 70px !important;
+    top: 40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-radius: 50px !important;
+    justify-content: space-between !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    /* Remove the solid green border for home page floating style */
   }
 
   /* 2. Mobile Menu (The Slide-out) */
@@ -150,38 +159,48 @@ header {
   /* 4. The Hamburger & Cross Animation */
   .hamburger {
     display: flex !important;
-    z-index: 1100;
-    /* Must be higher than nav-menu */
-    display: none;
-    /* Keep hidden on desktop */
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1101;
+    height: auto;
+    width: auto;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .menu-text {
+    display: none !important;
+  }
+
+  .hamburger-bars {
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 22px;
-    /* Shrunk from 30px */
-    height: 16px;
-    /* Shrunk from 30px/20px */
-    cursor: pointer;
-    z-index: 1101;
+    height: 12px;
   }
 
   .bar {
-    width: 100%;
+    width: 22px;
     height: 2px;
-    /* Thinner lines for a sleek look */
-    background-color: #ffffff !important;
-    border-radius: 10px;
-    transition: 0.3s ease;
+    background: #fff;
+    transition: 0.3s;
   }
 
-  /* Update the Cross Animation for the new smaller size */
   .hamburger.active .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-    /* Adjusted from 8px */
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
   }
 
   .hamburger.active .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-    /* Adjusted from -8px */
+    transform: translateY(-5px) rotate(-45deg);
   }
 
   /* 5. Timeline Row Fix */
@@ -1232,152 +1251,164 @@ CONTENT .content {
    FOOTER SECTION
    =============================== */
 .footer-content {
-    background-color: #000;
-    color: #fff;
-    padding: 60px 50px;
-    border-radius: 16px 16px 0 0;
-    font-family: 'Open Sans', sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 60px 50px;
+  border-radius: 16px 16px 0 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .footer-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: nowrap; /* Keeps Logo and Links side-by-side on Laptop */
-    gap: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  /* Keeps Logo and Links side-by-side on Laptop */
+  gap: 40px;
 }
 
 /* --- Left Side: Logo, Location, Map --- */
 .footer-logo-section {
-    flex: 0 0 350px; /* Fixed width prevents map from getting too small or too wide */
-    display: flex;
-    flex-direction: column;
-    gap: 15px; 
+  flex: 0 0 350px;
+  /* Fixed width prevents map from getting too small or too wide */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .footer-logo-section img {
-    width: 150px;
-    border-radius: 10px;
+  width: 150px;
+  border-radius: 10px;
 }
 
 .footer-logo-section p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* --- Right Side: Links Wrapper --- */
 .footer-links-section {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: nowrap; /* Forces links to stay in one row on Laptop */
-    gap: 20px; 
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  /* Forces links to stay in one row on Laptop */
+  gap: 20px;
 }
 
 /* Individual Columns */
 .footer-column {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-width: auto; 
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: auto;
 }
 
 .footer-column h3 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #fff;
-    white-space: nowrap;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+  white-space: nowrap;
 }
 
 .footer-column a {
-    text-decoration: none !important;
-    color: #ddd !important;
-    font-size: 15px;
-    transition: color 0.25s ease;
-    white-space: nowrap;
+  text-decoration: none !important;
+  color: #ddd !important;
+  font-size: 15px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
 }
 
 .footer-column a:hover {
-    color: #f9c802 !important;
+  color: #f9c802 !important;
 }
 
 /* --- Social Icons --- */
 .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .social-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .social-item img {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    transition: transform 0.2s ease, filter 0.2s ease;
-    filter: brightness(0) invert(1);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  filter: brightness(0) invert(1);
 }
 
 .social-item img:hover {
-    transform: scale(1.1);
-    filter: brightness(0) saturate(100%) invert(81%) sepia(68%) saturate(727%) hue-rotate(7deg) brightness(103%) contrast(103%);
+  transform: scale(1.1);
+  filter: brightness(0) saturate(100%) invert(81%) sepia(68%) saturate(727%) hue-rotate(7deg) brightness(103%) contrast(103%);
 }
 
-.social-item img[alt="Twitter"] { filter: none; transition: transform 0.2s ease; }
-.social-item img[alt="Twitter"]:hover { filter: none; transform: scale(1.1); }
+.social-item img[alt="Twitter"] {
+  filter: none;
+  transition: transform 0.2s ease;
+}
+
+.social-item img[alt="Twitter"]:hover {
+  filter: none;
+  transform: scale(1.1);
+}
 
 .footer-divider {
-    width: 100%;
-    height: 2px;
-    background-color: #333;
-    margin: 60px 0 20px;
-    border-radius: 2px;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  margin: 60px 0 20px;
+  border-radius: 2px;
 }
 
 .copyright {
-    font-size: 14px;
-    font-weight: 300;
-    text-align: center;
-    color: #bbb;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  color: #bbb;
 }
 
 /* ===========================
    MAP CONTAINER STYLING
    =========================== */
 .map-container {
-    width: 100%;
-    height: 180px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    margin-top: 5px; 
-    transition: all 0.3s ease;
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  margin-top: 5px;
+  transition: all 0.3s ease;
 }
 
 .map-container:hover {
-    transform: translateY(-3px);
-    border-color: #f9c802;
-    box-shadow: 0 8px 25px rgba(249, 200, 2, 0.2);
+  transform: translateY(-3px);
+  border-color: #f9c802;
+  box-shadow: 0 8px 25px rgba(249, 200, 2, 0.2);
 }
 
 .map-container iframe {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border: 0;
-    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2);
-    transition: filter 0.3s ease;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2);
+  transition: filter 0.3s ease;
 }
 
-.map-container:hover iframe { filter: none; }
+.map-container:hover iframe {
+  filter: none;
+}
 
 /* ==============================
    FOOTER RESPONSIVENESS
@@ -1385,53 +1416,64 @@ CONTENT .content {
 
 /* Tablet (Portrait) - Optional Tweaks */
 @media (max-width: 1024px) {
-    .footer-content { padding: 40px 30px; }
-    .footer-grid { gap: 20px; }
-    /* Allow wrapping on smaller tablets if absolutely necessary */
-    .footer-links-section { gap: 15px; }
+  .footer-content {
+    padding: 40px 30px;
+  }
+
+  .footer-grid {
+    gap: 20px;
+  }
+
+  /* Allow wrapping on smaller tablets if absolutely necessary */
+  .footer-links-section {
+    gap: 15px;
+  }
 }
 
 /* Mobile Devices */
 @media (max-width: 768px) {
-    .footer-content { padding: 40px 20px !important; }
-    
-    .footer-grid {
-        flex-direction: column !important; /* Stack Logo on top of Links */
-        align-items: center;
-        text-align: center;
-        gap: 40px;
-    }
-    
-    .footer-logo-section { 
-        width: 100%;
-        flex: none;
-        align-items: center;
-    }
+  .footer-content {
+    padding: 40px 20px !important;
+  }
 
-    /* Stack the link columns vertically */
-    .footer-links-section {
-        flex-direction: column !important; 
-        width: 100%;
-        justify-content: center;
-        align-items: center !important;
-        gap: 40px !important;
-    }
+  .footer-grid {
+    flex-direction: column !important;
+    /* Stack Logo on top of Links */
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
 
-    .footer-column {
-        width: 100%;
-        align-items: center; 
-        text-align: center;
-    }
-    
-    .social-item {
-        justify-content: center; 
-    }
+  .footer-logo-section {
+    width: 100%;
+    flex: none;
+    align-items: center;
+  }
 
-    .map-container {
-        width: 100%;
-        height: 200px;
-        margin: 20px auto 0;
-    }
+  /* Stack the link columns vertically */
+  .footer-links-section {
+    flex-direction: column !important;
+    width: 100%;
+    justify-content: center;
+    align-items: center !important;
+    gap: 40px !important;
+  }
+
+  .footer-column {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .social-item {
+    justify-content: center;
+  }
+
+  .map-container {
+    width: 100%;
+    height: 200px;
+    margin: 20px auto 0;
+  }
 }
 
 /* Hover animation for contact form buttons */

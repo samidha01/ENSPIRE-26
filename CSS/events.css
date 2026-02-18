@@ -1,133 +1,265 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background: #000;
-  color: #fff;
+    background: #000;
+    color: #fff;
 }
 
 /* =========================================
    GLOBAL OVERFLOW FIX (Prevents horizontal scrolling)
    ========================================= */
-html, body {
+html,
+body {
     width: 100% !important;
     max-width: 100vw !important;
-    overflow-x: hidden !important; 
+    overflow-x: hidden !important;
 }
 
-/* =========================================
-   HEADER & NAVBAR (Desktop Glass Pill)
-   ========================================= */
-body > header {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 0 30px !important;
-    position: fixed !important;
-    
-    top: 20px !important; 
-    left: 50% !important;
-    transform: translateX(-50%) !important; 
-    
-    width: 95% !important; 
-    max-width: 1200px !important; 
-    height: 75px !important;
-    z-index: 1000 !important;
-    
-    background: rgba(20, 20, 30, 0.7) !important; 
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important; 
-    border-radius: 100px !important; 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
-    box-sizing: border-box !important;
+/* ==============================
+   NAVBAR SECTION
+   ============================== */
+
+/* --- Desktop Glass Pill Navbar --- */
+body>header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1200px;
+    height: 75px;
+    z-index: 1000;
+
+    background: rgba(20, 20, 30, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-.logo img { height: 35px; width: auto; }
+/* Logo */
+.logo img {
+    height: 35px;
+    width: auto;
+}
 
-nav { flex-grow: 1; display: flex; justify-content: flex-end; }
-nav ul { list-style: none; display: flex; align-items: center; justify-content: space-evenly; width: 90%; margin: 0; padding: 0; }
-nav ul li { font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255, 255, 255, 0.85); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; white-space: nowrap; padding: 5px 10px; }
-li a { text-decoration: none !important; color: inherit; display: inline-block; transition: all 0.3s ease; }
-nav ul li:hover { color: #ffffff; transform: scale(1.15); text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
-li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0 12px rgba(249, 200, 2, 0.5); }
+/* Navigation */
+nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
 
-/* --- Passes Icon / Button --- */
-.pass-btn, .pass-btn a { display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; }
-.pass-btn img { height: 65px !important; width: auto; cursor: pointer; transform: translateY(4px) !important; transition: transform 0.3s ease, filter 0.3s ease; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7)); }
-.pass-btn img:hover { transform: translateY(4px) scale(1.1) !important; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1)); }
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: 0;
+    padding: 0;
+}
 
-/* Hamburger (Hidden on Desktop) */
-.hamburger { display: none; }
-.bar { width: 25px; height: 2px; background: #fff; transition: 0.3s; }
+nav ul li {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 5px 10px;
+}
 
-/* =========================================
-   HEADER MOBILE RESPONSIVENESS
-   ========================================= */
+nav ul li:hover {
+    color: #ffffff;
+    transform: scale(1.15);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Active Link */
+nav ul li a.active {
+    color: #f9c802;
+    text-shadow: 0 0 12px rgba(249, 200, 2, 0.5);
+}
+
+/* Pass Button */
+.pass-btn,
+.pass-btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pass-btn img {
+    height: 65px;
+    cursor: pointer;
+    transform: translateY(4px);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+}
+
+.pass-btn img:hover {
+    transform: translateY(4px) scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
+}
+
+/* ==============================
+   HAMBURGER (Mobile)
+   ============================== */
+
+.hamburger {
+    display: none;
+}
+
+.nav-brand {
+    display: none;
+}
+
+.bar {
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
+}
+
+/* ==============================
+   MOBILE RESPONSIVE NAVBAR
+   ============================== */
+
 @media (max-width: 768px) {
+
     header {
-        width: 92% !important; 
-        padding: 0 20px !important; 
-        height: 65px !important; 
-        top: 15px !important;
-        border-radius: 50px !important; 
+        width: 100% !important;
+        padding: 0 20px !important;
+        height: 70px !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        border-radius: 0 !important;
+        justify-content: space-between !important;
+        background: transparent !important;
+        border-top: 3px solid #14cf93;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-brand {
+        display: block;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        line-height: normal;
     }
 
     .hamburger {
         display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4px;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 2101;
+        height: auto;
+        width: auto;
+        background: transparent;
+        transition: all 0.3s ease;
+    }
+
+    .menu-text {
+        display: none !important;
+    }
+
+    .hamburger-bars {
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 25px;
-        height: 18px;
-        z-index: 2101;
-        cursor: pointer;
+        height: 16px;
     }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-    header nav#nav-menu {
-        display: flex;
-        position: fixed;
-        top: 0 !important;
-        left: -100% !important; 
-        width: 100% !important; 
-        height: 100vh !important;
-        background: rgba(5, 5, 5, 0.98) !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        z-index: 2000 !important;
-        transform: none !important;
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
     }
-    header nav#nav-menu.mobile-active { left: 0 !important; }
-    header nav#nav-menu ul { flex-direction: column; gap: 30px; width: 100%; text-align: center; }
-    header nav#nav-menu ul li { font-size: 22px; }
-    .pass-btn { display: none; }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-5px) rotate(-45deg);
+    }
+
+    nav#nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(5, 5, 5, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: left 0.4s ease;
+        z-index: 2000;
+    }
+
+    nav#nav-menu.mobile-active {
+        left: 0;
+    }
+
+    nav#nav-menu ul {
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav#nav-menu ul li {
+        font-size: 22px;
+    }
+
+    .pass-btn {
+        display: none;
+    }
 }
+
+
 /* Title */
 .title {
-  text-align: center;
-  margin: 40px 0 80px;
-  font-size: 48px;
-  color: rgb(255, 255, 255);
-  text-shadow: 0 0 10px red;
-  -webkit-text-stroke: 2px red;
-  text-stroke: 2px red;
-  margin-top: 130px;
+    text-align: center;
+    margin: 130px 0 80px;
+    font-size: 48px;
+    color: #ffffff;
 
-  /* Strong red glow */
-  text-shadow:
-    0 0 0px red,
-    0 0 15px red,
-    0 0 25px red,
+    /* Red Outline */
+    -webkit-text-stroke: 2px red;
 
+    /* Strong Red Glow */
+    text-shadow:
+        0 0 5px red,
+        0 0 15px red,
+        0 0 25px red;
 }
+
 
 /* --- Individual Event Block --- */
 .event {
@@ -138,22 +270,23 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
     align-items: center;
     position: relative;
     /* This ensures children can use the --event-color variable */
-    color: var(--event-color); 
+    color: var(--event-color);
 }
 
 .event:not(:last-child)::after {
     content: "";
     position: absolute;
     /* Adjust this value if the line is no longer hitting the center of the stone */
-    top: 150px; 
-    left: 75%; 
-    width: 60%; 
+    top: 150px;
+    left: 75%;
+    width: 60%;
     height: 5px;
     background: #ffffff;
     z-index: 1;
     opacity: 0.6;
     border-radius: 10px;
 }
+
 /* --- The Circle Container --- */
 .circle {
     position: relative;
@@ -165,9 +298,9 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     /* THE FIX: Border is transparent by default */
-    border: 2px solid transparent; 
+    border: 2px solid transparent;
     transition: all 0.4s ease-in-out;
 }
 
@@ -176,7 +309,8 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
 .event:hover .circle {
     border: 2px solid var(--event-color);
     box-shadow: inset 0 0 15px var(--event-color), 0 0 25px var(--event-color);
-    transform: scale(1.05); /* Adds a slight grow effect to the stone */
+    transform: scale(1.05);
+    /* Adds a slight grow effect to the stone */
 }
 
 /* --- The Stone Image (Always Visible) --- */
@@ -184,7 +318,8 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
     width: 90%;
     height: 90%;
     object-fit: contain;
-    mix-blend-mode: screen; /* Removes black/white backgrounds from stone JPGs */
+    mix-blend-mode: screen;
+    /* Removes black/white backgrounds from stone JPGs */
     pointer-events: none;
 }
 
@@ -193,22 +328,26 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
 
 .event h3 {
     /* 1. Force all headings to occupy the exact same vertical space */
-    height: 80px; 
+    height: 80px;
     display: flex;
-    align-items: center;    /* Vertically centers the text within that 80px */
+    align-items: center;
+    /* Vertically centers the text within that 80px */
     justify-content: center;
     text-align: center;
-    margin-bottom: 20px;    /* Constant gap between text and stone */
-    
+    margin-bottom: 20px;
+    /* Constant gap between text and stone */
+
     /* 2. Prevent long words from breaking the layout */
     overflow: hidden;
-    font-size: clamp(14px, 2vw, 20px); /* Automatically shrinks text on smaller screens */
+    font-size: clamp(14px, 2vw, 20px);
+    /* Automatically shrinks text on smaller screens */
     line-height: 1.2;
 }
 
 .timeline {
     display: flex;
-    align-items: flex-start; /* Aligns the tops of the event blocks */
+    align-items: flex-start;
+    /* Aligns the tops of the event blocks */
     justify-content: space-between;
     position: relative;
     padding-top: 20px;
@@ -217,123 +356,134 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
 /* Ensure the connecting line stays vertically centered relative to the stones */
 .line {
     position: absolute;
-    top: 155px; /* Adjust this number to match the center of your stones */
+    top: 155px;
+    /* Adjust this number to match the center of your stones */
     z-index: 1;
 }
+
 /* Much stronger glow on hover */
 .event:hover h3 {
-  text-shadow:
-    0 0 10px currentColor,
-    0 0 25px currentColor,
-    0 0 45px currentColor,
-    0 0 70px currentColor;
-  transform: translateY(-3px) scale(1.05);
+    text-shadow:
+        0 0 10px currentColor,
+        0 0 25px currentColor,
+        0 0 45px currentColor,
+        0 0 70px currentColor;
+    transform: translateY(-3px) scale(1.05);
 }
 
 /* Example: Making the Ideathon and VR stones 20% bigger */
 .event.vr .circle img {
-    transform: scale(1.4); /* 1.2 = 120% size */
+    transform: scale(1.4);
+    /* 1.2 = 120% size */
     transition: transform 0.3s ease;
 }
 
 .event p {
-  font-size: 13px;
-  line-height: 1.5;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 .pass-btn {
-  padding: 0;
-  background: none;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pass-btn img {
-  height: 250px;   /* matches navbar height */
-  width: auto;
-  display: block;
-  cursor: pointer;
-  transition: transform 0.2s ease, filter 0.2s ease;
+    height: 250px;
+    /* matches navbar height */
+    width: auto;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .pass-btn img {
-  height: 78px;        /* 👈 matches text height */
-  width: auto;
-  display: block;
-  cursor: pointer;
-  background: transparent;
-  transition: transform 0.2s ease, filter 0.2s ease;
+    height: 78px;
+    /* 👈 matches text height */
+    width: auto;
+    display: block;
+    cursor: pointer;
+    background: transparent;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .pass-btn {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .pass-btn img:hover {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 6px gold);
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 6px gold);
 }
 
 /* Container for the images */
 .event-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 320px);
-  gap: 60px 100px;
-  max-width: 700px;
-  margin: 80px auto;
-  width: max-content;     /* Shrinks the container to fit the cards exactly */
-  
-  justify-content: center;
-  perspective: 1500px; /* Essential for 3D flip */
+    display: grid;
+    grid-template-columns: repeat(2, 320px);
+    gap: 60px 100px;
+    max-width: 700px;
+    margin: 80px auto;
+    width: max-content;
+    /* Shrinks the container to fit the cards exactly */
+
+    justify-content: center;
+    perspective: 1500px;
+    /* Essential for 3D flip */
 }
 
 .card {
-  width: 293px;
-  height: 320px;
-  background: transparent;
-  cursor: pointer;
-  margin: 0 auto;
+    width: 293px;
+    height: 320px;
+    background: transparent;
+    cursor: pointer;
+    margin: 0 auto;
 }
 
 .card:hover .card-inner {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 45px;
-  border: 3px solid currentColor;
-  box-shadow: 0 0 20px currentColor;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; /* Clips white image corners */
-  backface-visibility: hidden;
--webkit-backface-visibility: hidden;
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 45px;
+    border: 3px solid currentColor;
+    box-shadow: 0 0 20px currentColor;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Clips white image corners */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .card-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 🔑 Makes the image fill the whole card */
-  mix-blend-mode: screen; /* 🔑 Magic trick to hide white backgrounds */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 🔑 Makes the image fill the whole card */
+    mix-blend-mode: screen;
+    /* 🔑 Magic trick to hide white backgrounds */
 }
 
 /* 1. Slow down the flip time */
 .card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  /* Increased from 0.6s to 1.2s for a smoother, slower feel */
-  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
-  transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Increased from 0.6s to 1.2s for a smoother, slower feel */
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
 }
 
 /* 2. Make the back face match the theme color */
@@ -349,12 +499,12 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
     border: 3px solid currentColor;
     box-shadow: 0 0 20px currentColor;
     border-radius: 30px;
-    
+
     /* THE FIX: This forces the back to use the Red/Green/Blue of the card class */
-    color: inherit; 
+    color: inherit;
     transform-style: preserve-3d;
     backface-visibility: hidden;
--webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .card-back h3 {
@@ -365,7 +515,8 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
 
 .card-back p {
     font-size: 1.15rem;
-    color: currentColor ; /* 🔑 Automatically turns Purple, Green, Red, etc. */
+    color: currentColor;
+    /* 🔑 Automatically turns Purple, Green, Red, etc. */
     font-weight: 600;
     line-height: 1.4;
     max-width: 90%;
@@ -373,62 +524,66 @@ li a.active { text-decoration: none; color: #f9c802 !important; text-shadow: 0 0
 }
 
 .btn-register {
-  margin-top: 10px;
-  padding: 12px 30px;
-  background: currentColor; /* Button background matches the stone color */
-  color: #f4e9e9; /* Black text for contrast */
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 50px;
-  box-shadow: 0 0 15px currentColor;
-  transition: transform 0.3s ease;
+    margin-top: 10px;
+    padding: 12px 30px;
+    background: currentColor;
+    /* Button background matches the stone color */
+    color: #f4e9e9;
+    /* Black text for contrast */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 0 15px currentColor;
+    transition: transform 0.3s ease;
 }
 
 .btn-register:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
 #bg-video {
-  /* 🔑 This stops the video from pushing content down */
-  position: fixed; 
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  
-  /* 🔑 This puts the video BEHIND your text and cards */
-  z-index: -1; 
-  
-  /* Centers the video */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  /* Ensures the video fills the screen without stretching */
-  object-fit: cover; 
-  
-  /* Helps your neon cards stand out against the motion */
-  filter: brightness(0.4); 
+    /* 🔑 This stops the video from pushing content down */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+
+    /* 🔑 This puts the video BEHIND your text and cards */
+    z-index: -1;
+
+    /* Centers the video */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Ensures the video fills the screen without stretching */
+    object-fit: cover;
+
+    /* Helps your neon cards stand out against the motion */
+    filter: brightness(0.4);
 }
 
 /* 🔑 Make sure the body doesn't have a solid color blocking the video */
 body {
-  margin: 0;
-  background: rgb(239, 236, 236); /* Fallback color */
+    margin: 0;
+    background: rgb(239, 236, 236);
+    /* Fallback color */
 }
 
 /* The base layer video */
 #bg-video {
-    position: fixed; 
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     min-width: 100%;
     min-height: 100%;
-    object-fit: cover; 
-    z-index: -3; /* Bottom-most layer */
-    filter: brightness(0.4); 
+    object-fit: cover;
+    z-index: -3;
+    /* Bottom-most layer */
+    filter: brightness(0.4);
 }
 
 /* The hover-only background image */
@@ -439,9 +594,12 @@ body {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    z-index: -2; /* Sits directly above the video */
-    opacity: 0;   /* Hidden by default */
-    transition: opacity 0.8s ease; /* Smooth fade-in effect */
+    z-index: -2;
+    /* Sits directly above the video */
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.8s ease;
+    /* Smooth fade-in effect */
 }
 
 /* The color tint layer */
@@ -451,21 +609,25 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Above the image, below the text */
+    z-index: -1;
+    /* Above the image, below the text */
     pointer-events: none;
     transition: background 0.8s ease;
 }
+
 .button-group {
     position: absolute;
-    bottom: 35px; /* Distance from bottom of card */
+    bottom: 35px;
+    /* Distance from bottom of card */
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     gap: 20px;
     padding: 0 15px;
-    z-index: 999; /* Forces buttons to the very front */
-   
+    z-index: 999;
+    /* Forces buttons to the very front */
+
 }
 
 .btn-flip {
@@ -473,8 +635,10 @@ body {
     align-items: center;
     justify-content: center;
 
-    min-width: 140px;   /* Bigger width */
-    height: 55px;       /* Taller button */
+    min-width: 140px;
+    /* Bigger width */
+    height: 55px;
+    /* Taller button */
 
     padding: 0 25px;
 
@@ -489,9 +653,9 @@ body {
     background-color: var(--event-color) !important;
     color: #000000 !important;
 
-    box-shadow: 
+    box-shadow:
         0 0 15px var(--event-color),
-        0 0 30px rgba(255,255,255,0.1);
+        0 0 30px rgba(255, 255, 255, 0.1);
 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -499,18 +663,41 @@ body {
 
 .btn-flip:hover {
     transform: scale(1.12);
-    box-shadow: 
+    box-shadow:
         0 0 25px var(--event-color),
         0 0 50px var(--event-color);
 }
 
 /* Colors */
-.idea { --event-color: #ff9800; color: var(--event-color); }
-.speaker { --event-color: #00ff00; color: var(--event-color); }
-.startup { --event-color: #ffeb3b; color: var(--event-color); }
-.vr { --event-color: #ff0000; color: var(--event-color); }
-.auction { --event-color: #00ffff; color: var(--event-color); }
-.tech { --event-color: #9c27b0; color: var(--event-color); }
+.idea {
+    --event-color: #ff9800;
+    color: var(--event-color);
+}
+
+.speaker {
+    --event-color: #00ff00;
+    color: var(--event-color);
+}
+
+.startup {
+    --event-color: #ffeb3b;
+    color: var(--event-color);
+}
+
+.vr {
+    --event-color: #ff0000;
+    color: var(--event-color);
+}
+
+.auction {
+    --event-color: #00ffff;
+    color: var(--event-color);
+}
+
+.tech {
+    --event-color: #9c27b0;
+    color: var(--event-color);
+}
 
 /* Container for the carousel */
 .carousel-container {
@@ -518,23 +705,27 @@ body {
     max-width: 1100px;
     margin: 60px auto;
     width: 90%;
-    
+
     /* Curves and Glow */
-    border-radius: 30px; 
-    overflow: hidden; /* Clips the image to the curves */
+    border-radius: 30px;
+    overflow: hidden;
+    /* Clips the image to the curves */
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 .carousel-slide img {
     width: 100%;
-    height: 85vh; /* Larger view */
+    height: 85vh;
+    /* Larger view */
     object-fit: contain;
-    background: #000; /* Fills empty space if image is thin */
+    background: #000;
+    /* Fills empty space if image is thin */
 }
 
 /* Adjust navigation buttons for visibility */
-.prev, .next {
+.prev,
+.next {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -544,7 +735,8 @@ body {
     color: white;
     font-weight: bold;
     font-size: 24px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
     border-radius: 50%;
     user-select: none;
     transition: 0.3s;
@@ -558,40 +750,43 @@ body {
     left: 10px;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
 .Flow {
     text-align: center;
-    margin-top: 100px; /* Adds space after the card section */
+    margin-top: 100px;
+    /* Adds space after the card section */
     font-size: 40px;
     color: #fff;
     text-shadow: 0 0 10px #fff;
 }
 
 @media (max-width: 900px) {
-  .timeline {
-    flex-direction: column;
-    gap: 40px;
-  }
+    .timeline {
+        flex-direction: column;
+        gap: 40px;
+    }
 
-  .line {
-    display: none;
-  }
+    .line {
+        display: none;
+    }
 
-  .event {
-    width: 100%;
-  }
+    .event {
+        width: 100%;
+    }
 
-  .event-cards {
-    grid-template-columns: 1fr;
-  }
+    .event-cards {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* --- Hamburger Icon Appearance --- */
 .hamburger {
-    display: none; /* Hidden on desktop by default */
+    display: none;
+    /* Hidden on desktop by default */
     flex-direction: column;
     justify-content: center;
     gap: 5px;
@@ -604,13 +799,15 @@ body {
 .bar {
     width: 100%;
     height: 3px;
-    background-color: #ffffff !important; /* Forces bars to be white */
+    background-color: #ffffff !important;
+    /* Forces bars to be white */
     border-radius: 2px;
     transition: 0.3s ease;
 }
 
 .pass-btn img {
-    height: 45px; /* Adjust to fit inside your 60px-70px header */
+    height: 45px;
+    /* Adjust to fit inside your 60px-70px header */
     width: auto;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -624,10 +821,11 @@ body {
 }
 
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+
     /* 1. Header adjustment */
     header {
-        justify-content: space-between;
+        justify-content: flex-end;
         width: 90%;
         padding: 0 15px;
     }
@@ -636,10 +834,11 @@ body {
     nav#nav-menu {
         position: fixed;
         top: 0;
-        left: -100%; /* Hidden by default */
+        left: -100%;
+        /* Hidden by default */
         width: 100%;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.98); 
+        background: rgba(0, 0, 0, 0.98);
         backdrop-filter: blur(20px);
         display: flex !important;
         flex-direction: column;
@@ -650,50 +849,62 @@ body {
     }
 
     nav#nav-menu.active {
-        left: 0; /* Slide in */
+        left: 0;
+        /* Slide in */
     }
 
     /* 3. Smaller Font & Spacing */
     nav ul {
         flex-direction: column !important;
-        gap: 20px; /* Reduced gap to prevent overflow */
+        gap: 20px;
+        /* Reduced gap to prevent overflow */
         text-align: center;
         padding: 0;
     }
 
     nav ul li {
-        font-size: 18px !important; /* Made smaller as requested */
+        font-size: 18px !important;
+        /* Made smaller as requested */
         list-style: none;
     }
 
     /* 4. The Hamburger & Cross Animation */
     .hamburger {
         display: flex !important;
-        z-index: 1100; /* Must be higher than nav-menu */
-        display: none; /* Keep hidden on desktop */
+        z-index: 1100;
+        /* Must be higher than nav-menu */
+        display: none;
+        /* Keep hidden on desktop */
         flex-direction: column;
         justify-content: space-between;
-        width: 22px;   /* Shrunk from 30px */
-        height: 16px;  /* Shrunk from 30px/20px */
+        width: 22px;
+        /* Shrunk from 30px */
+        height: 16px;
+        /* Shrunk from 30px/20px */
         cursor: pointer;
         z-index: 1101;
     }
 
-.bar {
-    width: 100%;
-    height: 2px;   /* Thinner lines for a sleek look */
-    background-color: #ffffff !important;
-    border-radius: 10px;
-    transition: 0.3s ease;
-}
+    .bar {
+        width: 100%;
+        height: 2px;
+        /* Thinner lines for a sleek look */
+        background-color: #ffffff !important;
+        border-radius: 10px;
+        transition: 0.3s ease;
+    }
 
-/* Update the Cross Animation for the new smaller size */
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg); /* Adjusted from 8px */
-}
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg); /* Adjusted from -8px */
-}
+    /* Update the Cross Animation for the new smaller size */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+        /* Adjusted from 8px */
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+        /* Adjusted from -8px */
+    }
+
     /* 5. Timeline Row Fix */
     .timeline {
         flex-direction: row !important;
@@ -701,27 +912,32 @@ body {
         padding-bottom: 20px;
         justify-content: flex-start;
     }
-    
+
     .event {
         min-width: 140px;
     }
 
     /* Hide redundant elements in header to save space */
-    header > .pass-btn-container {
-        display: none; /* Hide the floating pass button in mobile header */
+    header>.pass-btn-container {
+        display: none;
+        /* Hide the floating pass button in mobile header */
     }
-     .mobile-pass-item img {
+
+    .mobile-pass-item img {
         height: 55px !important;
         margin-top: 15px;
         display: block;
         filter: drop-shadow(0 0 10px gold);
         margin-left: auto;
-        margin-right: auto; /* Centers it in the menu */
+        margin-right: auto;
+        /* Centers it in the menu */
     }
+
     /* Center the gold ticket in the mobile list */
     .pass-btn {
         margin-top: 20px;
     }
+
     nav ul li.pass-btn {
         width: 100%;
         display: flex;
@@ -729,45 +945,53 @@ body {
         margin-top: 20px;
     }
 
-/* Force the Passes image to appear on all screens */
-.pass-btn img {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: 60px !important; /* Forces a height */
-    width: auto !important;   /* Keeps it from being 0px wide */
-    position: relative !important;
-    z-index: 9999 !important; /* Puts it on the very top layer */
-}
+    /* Force the Passes image to appear on all screens */
+    .pass-btn img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: 60px !important;
+        /* Forces a height */
+        width: auto !important;
+        /* Keeps it from being 0px wide */
+        position: relative !important;
+        z-index: 9999 !important;
+        /* Puts it on the very top layer */
+    }
 
-nav#nav-menu.active ul {
+    nav#nav-menu.active ul {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 30px;
     }
-  }
-    .pass-btn {
-        margin-top: 20px; /* Gives it breathing room in the vertical list */
-    }
+}
 
-    .pass-btn img {
-        display: block !important;
-        height: 75px !important; /* Force a height you can see */
-        width: auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        margin: 20px auto; /* Centers it in the mobile list */
-    }
-  
+.pass-btn {
+    margin-top: 20px;
+    /* Gives it breathing room in the vertical list */
+}
+
+.pass-btn img {
+    display: block !important;
+    height: 75px !important;
+    /* Force a height you can see */
+    width: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 20px auto;
+    /* Centers it in the mobile list */
+}
+
 .gold-ticket {
     background: linear-gradient(45deg, #ffd700, #ffae00);
-    color: #000 !important; /* Force black text */
+    color: #000 !important;
+    /* Force black text */
     padding: 8px 20px;
     border-radius: 10px;
     font-weight: 900;
     font-size: 14px;
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 15px #ffae00;
     border: 2px dashed #000;
     cursor: pointer;
@@ -778,6 +1002,7 @@ nav#nav-menu.active ul {
 .gold-ticket:hover {
     transform: scale(1.1) rotate(-2deg);
 }
+
 /* ===============================
    FOOTER SECTION
    =============================== */
@@ -793,16 +1018,18 @@ nav#nav-menu.active ul {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: nowrap; /* Keeps Logo and Links side-by-side on Laptop */
+    flex-wrap: nowrap;
+    /* Keeps Logo and Links side-by-side on Laptop */
     gap: 40px;
 }
 
 /* --- Left Side: Logo, Location, Map --- */
 .footer-logo-section {
-    flex: 0 0 350px; /* Fixed width prevents map from getting too small or too wide */
+    flex: 0 0 350px;
+    /* Fixed width prevents map from getting too small or too wide */
     display: flex;
     flex-direction: column;
-    gap: 15px; 
+    gap: 15px;
 }
 
 .footer-logo-section img {
@@ -822,8 +1049,9 @@ nav#nav-menu.active ul {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: nowrap; /* Forces links to stay in one row on Laptop */
-    gap: 20px; 
+    flex-wrap: nowrap;
+    /* Forces links to stay in one row on Laptop */
+    gap: 20px;
 }
 
 /* Individual Columns */
@@ -831,7 +1059,7 @@ nav#nav-menu.active ul {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    min-width: auto; 
+    min-width: auto;
 }
 
 .footer-column h3 {
@@ -880,8 +1108,15 @@ nav#nav-menu.active ul {
     filter: brightness(0) saturate(100%) invert(81%) sepia(68%) saturate(727%) hue-rotate(7deg) brightness(103%) contrast(103%);
 }
 
-.social-item img[alt="Twitter"] { filter: none; transition: transform 0.2s ease; }
-.social-item img[alt="Twitter"]:hover { filter: none; transform: scale(1.1); }
+.social-item img[alt="Twitter"] {
+    filter: none;
+    transition: transform 0.2s ease;
+}
+
+.social-item img[alt="Twitter"]:hover {
+    filter: none;
+    transform: scale(1.1);
+}
 
 .footer-divider {
     width: 100%;
@@ -908,7 +1143,7 @@ nav#nav-menu.active ul {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    margin-top: 5px; 
+    margin-top: 5px;
     transition: all 0.3s ease;
 }
 
@@ -927,7 +1162,9 @@ nav#nav-menu.active ul {
     transition: filter 0.3s ease;
 }
 
-.map-container:hover iframe { filter: none; }
+.map-container:hover iframe {
+    filter: none;
+}
 
 /* ==============================
    FOOTER RESPONSIVENESS
@@ -935,24 +1172,35 @@ nav#nav-menu.active ul {
 
 /* Tablet (Portrait) - Optional Tweaks */
 @media (max-width: 1024px) {
-    .footer-content { padding: 40px 30px; }
-    .footer-grid { gap: 20px; }
+    .footer-content {
+        padding: 40px 30px;
+    }
+
+    .footer-grid {
+        gap: 20px;
+    }
+
     /* Allow wrapping on smaller tablets if absolutely necessary */
-    .footer-links-section { gap: 15px; }
+    .footer-links-section {
+        gap: 15px;
+    }
 }
 
 /* Mobile Devices */
 @media (max-width: 768px) {
-    .footer-content { padding: 40px 20px !important; }
-    
+    .footer-content {
+        padding: 40px 20px !important;
+    }
+
     .footer-grid {
-        flex-direction: column !important; /* Stack Logo on top of Links */
+        flex-direction: column !important;
+        /* Stack Logo on top of Links */
         align-items: center;
         text-align: center;
         gap: 40px;
     }
-    
-    .footer-logo-section { 
+
+    .footer-logo-section {
         width: 100%;
         flex: none;
         align-items: center;
@@ -960,7 +1208,7 @@ nav#nav-menu.active ul {
 
     /* Stack the link columns vertically */
     .footer-links-section {
-        flex-direction: column !important; 
+        flex-direction: column !important;
         width: 100%;
         justify-content: center;
         align-items: center !important;
@@ -969,12 +1217,12 @@ nav#nav-menu.active ul {
 
     .footer-column {
         width: 100%;
-        align-items: center; 
+        align-items: center;
         text-align: center;
     }
-    
+
     .social-item {
-        justify-content: center; 
+        justify-content: center;
     }
 
     .map-container {
