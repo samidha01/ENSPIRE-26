@@ -129,17 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 4. 3D CAROUSEL LOGIC ---
-    const carouselContainer = document.querySelector('.carousel-container');
+    const carouselContainer = document.getElementById('carousel-container');
 
     if (carouselContainer) {
         const cards = Array.from(carouselContainer.querySelectorAll('.speaker-card'));
         const totalCards = cards.length;
 
-        if (totalCards >= 3) {
-            let currentIndex = 1;
+        if (totalCards >= 1) {
+            let currentIndex = 0;
+            let autoPlayTimer = null;
 
             function updateCarousel() {
-                cards.forEach(card => {
+                cards.forEach((card) => {
                     card.classList.remove('c-active', 'c-prev', 'c-next');
                 });
 
@@ -147,14 +148,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nextIndex = (currentIndex + 1) % totalCards;
 
                 cards[currentIndex].classList.add('c-active');
-                cards[prevIndex].classList.add('c-prev');
-                cards[nextIndex].classList.add('c-next');
-
-                currentIndex = (currentIndex + 1) % totalCards;
+                if (totalCards > 1) cards[prevIndex].classList.add('c-prev');
+                if (totalCards > 2) cards[nextIndex].classList.add('c-next');
             }
 
+            function goTo(index) {
+                currentIndex = ((index % totalCards) + totalCards) % totalCards;
+                updateCarousel();
+            }
+
+            function goNext() { goTo(currentIndex + 1); }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayTimer = setInterval(goNext, 3500);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayTimer) {
+                    clearInterval(autoPlayTimer);
+                    autoPlayTimer = null;
+                }
+            }
+
+            // Pause on hover
+            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+            carouselContainer.addEventListener('mouseleave', startAutoPlay);
+
+            // Init
             updateCarousel();
-            setInterval(updateCarousel, 3000);
+            startAutoPlay();
         }
     }
 });
