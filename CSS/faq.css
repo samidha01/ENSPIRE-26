@@ -482,9 +482,20 @@ li a.active {
 .footer-column h3 {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 15px !important;
     color: #fff;
     white-space: nowrap;
+    
+    /* --- Adds the Yellow Line --- */
+    border-bottom: 2px solid #f9c802 !important;
+    padding-bottom: 8px !important;
+    
+    /* --- Fits the line exactly to the text width --- */
+    display: inline-block !important;
+    width: auto !important; 
+    
+    /* --- Keeps it left-aligned on Desktop --- */
+    align-self: flex-start; 
 }
 
 .footer-column a {
@@ -560,27 +571,41 @@ li a.active {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    margin-top: 5px;
+    margin-top: 5px; 
     transition: all 0.3s ease;
+    
+    /* FIX: Removes blue outline on container */
+    outline: none !important; 
+}
+
+/* Removes blue outline when clicking inside the container */
+.map-container:focus-within {
+    outline: none !important;
 }
 
 .map-container:hover {
     transform: translateY(-3px);
-    border-color: #f9c802;
+    border-color: #f9c802; /* Keeps the yellow hover effect */
     box-shadow: 0 8px 25px rgba(249, 200, 2, 0.2);
 }
 
+/* The Map Iframe Itself (Locked in Dark Mode) */
 .map-container iframe {
     width: 100%;
     height: 100%;
     display: block;
-    border: 0;
-    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2);
-    transition: filter 0.3s ease;
+    border: 0 !important;
+    
+    /* FIX: Removes blue outline on the map itself */
+    outline: none !important; 
+    
+    /* Forces the dark filter constantly */
+    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2) !important;
 }
 
-.map-container:hover iframe {
-    filter: none;
+/* Ensure hovering NEVER removes the dark filter */
+.map-container:hover iframe { 
+    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2) !important; 
 }
 
 /* ==============================
@@ -798,4 +823,11 @@ li a.active {
         justify-content: center;
         /* Centers social icons */
     }
+    @media (max-width: 768px) {
+    .footer-column h3 {
+        /* --- Centers the text and the line on Mobile --- */
+        align-self: center !important; 
+        text-align: center !important;
+    }
+}
 }
