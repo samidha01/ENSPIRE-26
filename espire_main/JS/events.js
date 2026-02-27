@@ -25,29 +25,31 @@ function showSlides(n) {
     // Show the current slide
     slides[slideIndex - 1].style.display = "block";
 }
-// Ensure the script runs after the HTML is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
+    const menuText = document.querySelector('.menu-text');
 
-    // Check if both elements exist to avoid the 'null' error
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
+            // Match the CSS .active class
+            const isActive = navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
-            navMenu.classList.toggle('mobile-active');
-            document.body.classList.toggle('menu-open');
+            
+            if (isActive) {
+                if (menuText) {
+                    menuText.textContent = 'Close';
+                    menuText.style.color = "#ffffff"; 
+                }
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                if (menuText) {
+                    menuText.textContent = 'Menu';
+                    menuText.style.color = "#ffffff";
+                }
+                document.body.style.overflow = 'auto';
+            }
         });
-
-        // Close menu when a link is clicked
-        const navLinks = document.querySelectorAll('nav ul li');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('mobile-active');
-            });
-        });
-    } else {
-        console.error("Hamburger or Nav Menu ID not found in HTML!");
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
