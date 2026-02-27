@@ -800,7 +800,7 @@ CONTENT .content {
 /* Grid */
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   max-width: 75rem;
   margin: auto;
@@ -994,6 +994,14 @@ CONTENT .content {
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), inset 0 0 20px rgba(255, 215, 0, 0.2);
 }
 
+/* Position BGMI (golden) card below TechXPIRE in center column */
+.events-grid .event-card.golden {
+  grid-column: 2 / 3;
+  grid-row: 3;
+  justify-self: center;
+  align-self: start;
+}
+
 /* ===========================
    RESPONSIVE
 =========================== */
@@ -1001,7 +1009,7 @@ CONTENT .content {
 
 
 .events-grid {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 0 1rem;
 }
