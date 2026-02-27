@@ -314,11 +314,10 @@ li a.active {
     transition: 0.3s ease;
 }
 
-.contact-card:hover,
-.contact-card:active {
+.contact-card:hover {
     box-shadow: 0 0 25px var(--glow),
         0 0 50px var(--glow);
-    transform: scale(1.03);
+    transform: scale(1.03) !important;
 }
 
 .contact-card img {
@@ -552,17 +551,17 @@ li a.active {
     margin-bottom: 15px !important;
     color: #fff;
     white-space: nowrap;
-    
+
     /* --- Adds the Yellow Line --- */
     border-bottom: 2px solid #f9c802 !important;
     padding-bottom: 8px !important;
-    
+
     /* --- Makes the line fit the text exactly --- */
     display: inline-block !important;
-    width: auto !important; 
-    
+    width: auto !important;
+
     /* --- Keeps it left-aligned on Desktop --- */
-    align-self: flex-start; 
+    align-self: flex-start;
 }
 
 .footer-column a {
@@ -638,11 +637,11 @@ li a.active {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    margin-top: 5px; 
+    margin-top: 5px;
     transition: all 0.3s ease;
-    
+
     /* FIX: Removes blue outline on container */
-    outline: none !important; 
+    outline: none !important;
 }
 
 /* Removes blue outline when clicking inside the container */
@@ -652,7 +651,8 @@ li a.active {
 
 .map-container:hover {
     transform: translateY(-3px);
-    border-color: #f9c802; /* Keeps the yellow hover effect */
+    border-color: #f9c802;
+    /* Keeps the yellow hover effect */
     box-shadow: 0 8px 25px rgba(249, 200, 2, 0.2);
 }
 
@@ -662,18 +662,19 @@ li a.active {
     height: 100%;
     display: block;
     border: 0 !important;
-    
+
     /* FIX: Removes blue outline on the map itself */
-    outline: none !important; 
-    
+    outline: none !important;
+
     /* Forces the dark filter constantly */
     filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2) !important;
 }
 
 /* Ensure hovering NEVER removes the dark filter */
-.map-container:hover iframe { 
-    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2) !important; 
+.map-container:hover iframe {
+    filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2) !important;
 }
+
 /* ==============================
    FOOTER RESPONSIVENESS
    ============================== */
@@ -738,11 +739,12 @@ li a.active {
         height: 200px;
         margin: 20px auto 0;
     }
+
     @media (max-width: 768px) {
-    .footer-column h3 {
-        /* --- Centers the text and the line on Mobile --- */
-        align-self: center !important; 
-        text-align: center !important;
+        .footer-column h3 {
+            /* --- Centers the text and the line on Mobile --- */
+            align-self: center !important;
+            text-align: center !important;
+        }
     }
-}
 }
