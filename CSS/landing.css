@@ -174,39 +174,39 @@ header {
   }
 nav#nav-menu {
     position: fixed !important;
-    /* Position it slightly away from the edges for the floating effect */
-    top: 15px !important; 
-    right: 15px !important; 
-    left: auto !important; 
+    /* 🔥 SHIFTED DOWN: Moved from 15px to 85px to clear the Close pill */
+    top: 40px !important; 
+    right: 20px !important; 
+    left: 31px !important; 
     
-    /* 🔥 SMALLER SIZE */
-    width: 280px !important;      /* Fixed width */
-    height: auto !important;       /* Height adjusts to content */
-    max-height: 80vh !important;   /* Limits height to 80% of screen */
+    width: 325px !important; 
+    height: auto !important; 
+    max-height: 155vh !important; 
+    border-radius: 25px !important; 
     
-    /* 🔥 CURVED EDGES ON ALL SIDES */
-    border-radius: 30px !important; 
-    
-    /* Glassmorphism Styling */
-    background-color: rgba(0, 0, 0, 0) !important; 
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+    /* Slightly higher opacity for better text contrast */
+    background: rgba(16, 15, 15, 0.567) !important; 
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(16, 15, 15, 0.693) !important;
 
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: flex-start !important;
-    padding: 80px 20px 40px !important; /* Extra top padding for the header overlap */
+    justify-content: center !important; 
+    
+    /* Reduced top padding since it's no longer overlapping the pill */
+    padding: 10px 30px !important; 
 
-    /* Animation: Slides in from the side */
     transform: translateX(120%) !important;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    
     z-index: 10000 !important;
     visibility: hidden !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 10px 40px rgb(77, 76, 76) !important;
+    overflow-y: auto !important;
   }
+
+  
 
   nav#nav-menu.active {
     transform: translateX(0) !important;

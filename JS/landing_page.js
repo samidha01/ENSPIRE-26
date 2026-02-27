@@ -93,33 +93,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const header = document.querySelector('header');
             if(header) header.classList.toggle('menu-open');
 
-            if (isActive) {
-                // Switch elements to black for the cream background
-                if (logoImg) logoImg.style.filter = "brightness(0)"; 
-                if (menuPill) {
-                    menuPill.style.backgroundColor = "rgba(0, 0, 0, 0.05)";
-                    menuPill.style.borderColor = "#000000";
-                }
-                if (menuText) {
-                    menuText.textContent = 'Close';
-                    menuText.style.color = "#000000";
-                }
-                bars.forEach(b => b.style.backgroundColor = "#000000");
-                body.style.overflow = "hidden"; 
-            } else {
-                // Restore white elements for the galaxy background
-                if (logoImg) logoImg.style.filter = "none";
-                if (menuPill) {
-                    menuPill.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-                    menuPill.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                }
-                if (menuText) {
-                    menuText.textContent = 'Menu';
-                    menuText.style.color = "#ffffff";
-                }
-                bars.forEach(b => b.style.backgroundColor = "#ffffff");
-                body.style.overflow = "auto";
-            }
+           if (isActive) {
+    // --- When Menu is OPEN ---
+    if (menuText) {
+        menuText.textContent = 'Close';
+        // 🔥 FORCE PURE WHITE COLOR
+        menuText.style.color = "#ffffff"; 
+    }
+    
+    // Ensure the border and bars are also white for consistency
+    menuPill.style.borderColor = "#ffffff";
+    bars.forEach(b => b.style.backgroundColor = "#ffffff");
+    
+    document.body.style.overflow = "hidden"; 
+} else {
+    // --- When Menu is CLOSED ---
+    if (menuText) {
+        menuText.textContent = 'Menu';
+        menuText.style.color = "#ffffff";
+    }
+    menuPill.style.borderColor = "rgba(255, 255, 255, 0.3)";
+    bars.forEach(b => b.style.backgroundColor = "#ffffff");
+    
+    document.body.style.overflow = "auto";
+}
         });
     }
 
