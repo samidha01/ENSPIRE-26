@@ -82,41 +82,81 @@ main {
 
 
 @media (max-width: 768px) {
+
 header {
     position: fixed !important;
     top: 20px !important;
-    left: 47% !important;
+    left: 46% !important;
     transform: translateX(-50%) !important;
-    width: 92% !important;
-    height: 65px !important;
+    width: 90% !important; /* Smaller width for a floating look */
+    height: 60px !important;
     
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    padding: 0 15px !important;
+    padding: 0 10px !important;
     box-sizing: border-box !important;
-
-    /* 🔥 CRITICAL: Higher than nav-menu */
-    z-index: 10001 !important; 
     
-    /* Default state glass effect */
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    transition: background 0.3s ease, border 0.3s ease;
+    /* Transparent background ensures only the logo and menu pill are seen */
+    background: transparent !important; 
+    backdrop-filter: none !important;
+    border: none !important;
+    z-index: 10001 !important;
   }
 
-  /* When the menu is active, make the header bar invisible so it looks part of the menu */
-  header.menu-open {
-    background: transparent !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
+  /* --- 2. The Small Menu Pill (Around text only) --- */
+  .menu-pill {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px 16px !important;
+    
+    /* Floating Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50px !important; /* Curved edges */
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .menu-text {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .logo img {
-    height: 28px !important; /* Slightly smaller for mobile elegance */
+    height: 28px !important; /* Scaled down logo */
     width: auto !important;
   }
+
+  /* --- 4. Hamburger Bars Styling --- */
+  .hamburger-bars {
+    position: relative;
+    width: 18px;
+    height: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .bar {
+    width: 100% !important;
+    height: 2px !important;
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+  }
+
+  /* Cross Animation logic */
+  .hamburger.active .bar:nth-child(1) { transform: translateY(5px) rotate(45deg) !important; }
+  .hamburger.active .bar:nth-child(2) { opacity: 0 !important; }
+  .hamburger.active .bar:nth-child(3) { transform: translateY(-5px) rotate(-45deg) !important; }
+
 
   .hamburger {
     display: flex !important;
@@ -127,78 +167,39 @@ header {
     flex-shrink: 0 !important; /* Prevents squashing */
   }
 
-  .menu-pill {
-    display: flex !important;
-    align-items: center !important;
-    padding: 6px 14px !important;
-    border-radius: 50px !important;
-    border: 1.5px solid #ffffff !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-  }
 .logo {
     display: flex !important;
     align-items: center !important;
     flex-shrink: 0 !important;
   }
-  .menu-text {
-    display: block !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    color: #fff !important;
-    text-transform: uppercase !important;
-    line-height: 1 !important;
-  }
 
-  /* --- 4. The Quick Cross Animation --- */
-  .hamburger-bars {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 18px;
-    height: 12px;
-  }
-
-  .bar {
-    width: 100%;
-    height: 2px;
-    background-color: #ffffff !important;
-    border-radius: 10px;
-    /* Quick 0.2s transition for a snappy feel */
-    transition: transform 0.2s ease, opacity 0.2s ease !important;
-  }
-
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(6px) rotate(45deg) !important;
-}
-.hamburger.active .bar:nth-child(2) {
-    opacity: 0 !important;
-}
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg) !important;
-}
-nav#nav-menu {
+/* --- 2. Force the Menu to be Full-Screen and Transparent --- */
+  nav#nav-menu {
     position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 5% !important;
-    width: 100vw !important; /* Forces full width */
-    height: 100vh !important; /* Forces full height */
-    background: #fdfae7 !important; /* Cream GSAP color from your images */
+    /* This 'inset' command kills the top/left gaps */
+    inset: 0px !important; 
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    /* 🔥 FORCE TRANSPARENCY: rgba(253, 250, 231, 0.7) */
+    background-color: rgba(3, 3, 3, 0.7) !important; 
     
+    /* This creates the 'Glass' effect over the stars */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important; 
+    align-items: center !important;
     justify-content: center !important;
-    
-    /* Starts completely off-screen to the right */
-    transform: translateX(100%) !important; 
+
+    /* Transition Settings */
+    transform: translateX(100%) !important;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    
-    /* Sits just below the header bar's z-index */
-    z-index: 9999 !important; 
-    visibility: hidden;
-    pointer-events: none;
+    z-index: 10000 !important;
+    visibility: hidden !important;
   }
 
   nav#nav-menu.active {
@@ -206,23 +207,12 @@ nav#nav-menu {
     visibility: visible !important;
     pointer-events: all !important;
   }
-
-
-  /* Link Container Sizing */
-  nav#nav-menu ul {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 25px !important;
-    padding: 0 !important;
-  }
-
+  /* Typography Sizing */
   nav#nav-menu ul li a {
-    font-size: 1.8rem !important; /* Balanced mobile size */
+    font-size: 1.8rem !important;
     font-weight: 800 !important;
-    color: #000 !important;
+    color: #ffffff !important; /* Keep text dark for contrast on cream */
     text-transform: uppercase !important;
-    text-decoration: none !important;
   }
 }
 
