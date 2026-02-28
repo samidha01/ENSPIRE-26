@@ -742,113 +742,173 @@ body {
 
 @media (max-width: 768px) {
 
-    /* 1. Reset the Header and FORCE it to be visible */
+/* 1. Reset Desktop Header: Removes the big pill background */
     body > header {
         position: fixed !important;
-        display: flex !important; /* Forces the container to show */
         top: 20px !important;
-        left: 50% !important;
+        left: 55%!important;
         transform: translateX(-50%) !important;
         
+        /* 🔥 REMOVE GHOST PILL: Clear desktop backgrounds */
         background: transparent !important;
+        backdrop-filter: none !important;
         border: none !important;
         box-shadow: none !important;
         
-        width: 85% !important; /* Safe width to keep pill on screen */
+        width: 85% !important; 
         max-width: 400px !important;
         height: 70px !important; 
+        display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
         z-index: 10001 !important;
     }
 
-    /* 2. FORCE the Hamburger/Pill to show */
+    /* 2. THE SMALL MENU PILL: Forced visibility on the right */
     .hamburger {
-        display: flex !important; /* Overrides any 'display: none' */
+        display: flex !important;
+        margin-left: auto !important; 
         z-index: 10002 !important;
     }
 
-    .menu-pill {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        min-width: 110px !important; 
-        padding: 10px 18px !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        backdrop-filter: blur(10px);
-        border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
-        border-radius: 50px !important;
-    }
+   /* --- The Pill Enclosure --- */
+     .menu-pill {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    right: 55px !important;
+    position: relative !important;
 
-    .menu-text {
-        display: block !important; /* Brings back the 'Menu'/'Close' text */
-        color: #ffffff !important;
-        font-weight: 700 !important;
-        font-size: 14px !important;
-    }
+    /* Lock the pill width to prevent it from shrinking to a circle */
+    min-width: 110px !important;
+    padding: 10px 18px !important;
+    margin-top: 5px;
+    background: rgba(15, 15, 15, 0.663) !important;
+    backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.462) !important;
+    border-radius: 50px !important;
+  }
 
-    /* 3. The Slide-out Menu (Overlap Fix) */
-    nav#nav-menu {
-        position: fixed !important;
-        top: 0 !important;
-        right: 0 !important;
-        left: auto !important;
-        width: 100% !important;
-        height: 100vh !important;
-        background: rgba(0, 0, 0, 0.98) !important;
-        transform: translateX(100%); /* Starts hidden to the right */
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-        z-index: 10000 !important;
-        visibility: hidden; 
-    }
+  /* Ensure the text doesn't wrap or disappear */
+  .menu-text {
+    white-space: nowrap !important;
+    font-size: 14px !important;
+    display: inline-block !important;
+  }
 
-    nav#nav-menu.active {
-        transform: translateX(0) !important;
-        visibility: visible !important;
+  .hamburger-bars {
+    position: relative;
+    width: 18px;
+    height: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+  }
+/* 🔥 THE FIX: Reset the button itself to ensure no system defaults */
+    button#hamburger {
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent;
     }
- /* Larger Logo visibility */
-    .logo img {
-        height: 38px !important; 
-        width: auto !important;
-    }
+  .bar {
+    width: 100% !important;
+    height: 2px !important;
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+  }
 
-
-    /* --- 3. The Hamburger Icon Fix --- */
-    .hamburger-bars {
-        width: 20px !important; 
-        height: 14px !important;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .bar {
-        width: 100% !important;
-        height: 2px !important;
-        background-color: #ffffff !important;
-        transition: 0.3s ease !important;
-    }
-
-    /* --- 4. The Slide-out Menu (Overlap Fix) --- */
+    /* 3. OVERLAP FIX: Correctly hide the black menu off-screen */
+  nav#nav-menu {
+    position: fixed !important;
+    top: 70px !important;
+    right: 8% !important;
+    width: 315px !important;
+    height: 625px !important; /* Increased for better vertical spacing */
     
-     /* 3. OVERLAP FIX: Correctly hide the black menu using transform */
-   
+    background: rgba(15, 15, 15, 0.974) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0) !important;
+    border-radius: 40px !important;
+    backdrop-filter: none!important;
+    
+    /* 🔥 THE FIX: Padding & Space-Between creates the vertical gaps */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important; 
+    padding: 50px 0 !important;
+    box-sizing: border-box !important;
+    
+    z-index: 10000 !important;
+    transform: translateX(120%) !important;
+    visibility: hidden;
+    transition: transform 0.4s ease !important;
+  }
 
-    nav#nav-menu ul {
-        flex-direction: column !important;
-        gap: 30px !important;
-    }
+  nav#nav-menu.active {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
 
-    /* 4. Timeline Swiping Fix */
+  /* --- The Link List --- */
+  nav#nav-menu ul {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    /* 🔥 THE FIX: Space-evenly distributes Home, Events, etc. */
+    justify-content: space-evenly !important; 
+    height: 70% !important; /* Uses top 70% of card for links */
+    width: 100% !important;
+    list-style: none !important;
+    padding: 0 !important;
+  }
+
+  nav#nav-menu ul li a {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+
+  /* --- The Passes Button (Bottom Anchor) --- */
+  .pass-btn {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: auto !important; /* Pushes to bottom */
+    padding-bottom: 10px !important;
+  }
+
+  .pass-btn img {
+    height: 60px !important;
+    width: auto !important;
+    /* 🔥 THE GLOW: Matching image_214fe3.png */
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8)) !important;
+  }
     .timeline {
         flex-direction: row !important;
         overflow-x: auto;
         padding-bottom: 20px;
         justify-content: flex-start;
     }
-
-    .pass-btn { display: none !important; }
+    
+ /* Larger Logo visibility */
+    .logo img {
+        height: 38px !important; 
+        width: auto !important;
+    }
 }
 
     
