@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
             hamburger.classList.toggle('active');
-            navMenu.classList.toggle('mobile-active');
+            navMenu.classList.toggle('active');
         });
 
         // Close menu if clicking outside of it
         document.addEventListener('click', (e) => {
             if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                 hamburger.classList.remove('active');
-                navMenu.classList.remove('mobile-active');
+                navMenu.classList.remove('active');
             }
         });
     }

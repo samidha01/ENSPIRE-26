@@ -2,24 +2,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
+    const menuText = document.querySelector('.menu-text');
+    const bars = document.querySelectorAll('.bar');
 
-    // Check if both elements exist to avoid the 'null' error
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
+            const isActive = navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
+
+            if (menuText) {
+                if (isActive) {
+                    menuText.textContent = 'Close';
+                    menuText.style.color = "#ffffff";
+                    menuText.style.opacity = "1";
+                    document.body.style.overflow = "hidden";
+                } else {
+                    menuText.textContent = 'Menu';
+                    menuText.style.color = "#ffffff";
+                    menuText.style.opacity = "1";
+                    document.body.style.overflow = "auto";
+                }
+            }
+
+            // Ensure the hamburger bars also stay white
+            bars.forEach(b => b.style.backgroundColor = "#ffffff");
         });
 
         // Close menu when a link is clicked
-        const navLinks = document.querySelectorAll('nav ul li');
+        const navLinks = document.querySelectorAll('#nav-menu a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                if (menuText) menuText.textContent = 'Menu';
+                document.body.style.overflow = "auto";
             });
         });
-    } else {
-        console.error("Hamburger or Nav Menu ID not found in HTML!");
     }
 });

@@ -120,7 +120,7 @@ main {
   }
 
 
-  hamburger {
+  .hamburger {
 
     display: flex !important;
     align-items: center !important;
@@ -214,7 +214,7 @@ main {
     max-height: 80vh !important;
 
     border-radius: 25px !important;
-    background: rgba(16, 15, 15, 0.95) !important;
+    background: rgba(16, 15, 15, 0.8) !important;
     backdrop-filter: blur(25px) !important;
     -webkit-backdrop-filter: blur(25px) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -242,12 +242,30 @@ main {
 
   /* Tighten link spacing for the smaller menu */
   nav#nav-menu ul {
-    gap: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 20px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  nav#nav-menu ul li {
+    width: 100% !important;
+    text-align: center !important;
   }
 
   nav#nav-menu ul li a {
-    font-size: 1.3rem !important;
-    padding: 8px 0 !important;
+    display: block !important;
+    width: 100% !important;
+    font-size: 1.5rem !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+    padding: 10px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
   }
 
   /* --- Passes Ticket Fix --- */
@@ -740,7 +758,7 @@ CONTENT .content {
 
 /* BUTTON */
 .btn {
-   padding: 0.875rem 2.1875rem;
+  padding: 0.875rem 2.1875rem;
   width: 18rem;
   border-radius: 1.875rem;
   background: transparent;
@@ -2754,7 +2772,8 @@ main {
 .alumni-section {
   padding: 3rem 2rem 5rem 2rem;
   background: transparent;
-  max-width: 1100px; /* Constrains the section so images don't get too massive */
+  max-width: 1100px;
+  /* Constrains the section so images don't get too massive */
   margin: 0 auto;
 }
 
@@ -2762,8 +2781,10 @@ main {
 .alumni-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* This centers the bottom 2 perfectly */
-  gap: 2.5rem; /* Space between cards */
+  justify-content: center;
+  /* This centers the bottom 2 perfectly */
+  gap: 2.5rem;
+  /* Space between cards */
   margin-top: 2rem;
 }
 
@@ -2772,11 +2793,12 @@ main {
   /* 3 cards minus the gaps. 2 gaps of 2.5rem = 5rem total gap. 5rem / 3 = 1.66rem to subtract */
   flex: 0 0 calc(33.333% - 1.67rem);
   max-width: calc(33.333% - 1.67rem);
-  
+
   position: relative;
   border-radius: 15px;
   overflow: hidden;
-  aspect-ratio: 3/4; /* Keeps the nice portrait shape */
+  aspect-ratio: 3/4;
+  /* Keeps the nice portrait shape */
   cursor: pointer;
   box-shadow: 0 5px 5px rgb(255, 255, 255);
   border: 2px solid rgb(255, 255, 255);
@@ -2836,7 +2858,7 @@ main {
 @media (max-width: 900px) {
   .alumni-card {
     /* Drops to 2 cards per row on tablets */
-    flex: 0 0 calc(50% - 1.25rem); 
+    flex: 0 0 calc(50% - 1.25rem);
     max-width: calc(50% - 1.25rem);
   }
 }
@@ -2845,13 +2867,16 @@ main {
   .alumni-section {
     padding: 2rem 1rem 3rem 1rem;
   }
+
   .alumni-grid {
     gap: 1.5rem;
   }
+
   .alumni-card {
     flex: 0 0 calc(50% - 0.75rem);
     max-width: calc(50% - 0.75rem);
   }
+
   .alumni-overlay h3 {
     font-size: 1.1rem;
   }
@@ -2860,7 +2885,7 @@ main {
 @media (max-width: 480px) {
   .alumni-card {
     /* Stack 1 by 1 on very small mobile screens */
-    flex: 0 0 100%; 
-    max-width: 280px; 
+    flex: 0 0 100%;
+    max-width: 280px;
   }
 }

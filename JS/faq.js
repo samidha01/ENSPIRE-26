@@ -3,19 +3,41 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- Hamburger --- */
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
+    const menuText = document.querySelector('.menu-text');
+    const bars = document.querySelectorAll('.bar');
 
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
+        hamburger.addEventListener('click', () => {
+            const isActive = navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
-            navMenu.classList.toggle('mobile-active');
+
+            if (menuText) {
+                if (isActive) {
+                    menuText.textContent = 'Close';
+                    menuText.style.color = "#ffffff";
+                    menuText.style.opacity = "1";
+                    document.body.style.overflow = "hidden";
+                } else {
+                    menuText.textContent = 'Menu';
+                    menuText.style.color = "#ffffff";
+                    menuText.style.opacity = "1";
+                    document.body.style.overflow = "auto";
+                }
+            }
+
+            // Ensure the hamburger bars also stay white
+            bars.forEach(b => b.style.backgroundColor = "#ffffff");
         });
 
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        // Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('#nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
-                navMenu.classList.remove('mobile-active');
-            }
+                navMenu.classList.remove('active');
+                if (menuText) menuText.textContent = 'Menu';
+                document.body.style.overflow = "auto";
+            });
         });
     }
 
@@ -25,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     questions.forEach(question => {
         question.addEventListener('click', () => {
             const faqItem = question.parentElement;
-            
+
             // Optional: Close others (Accordion effect)
             // document.querySelectorAll('.faq-item').forEach(item => {
             //     if(item !== faqItem) item.classList.remove('active');
